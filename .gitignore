@@ -1,0 +1,20 @@
+# Maven #
+target/
+mybatisGenerator/
+
+# IDEA #
+.idea/
+*.iml
+
+# Eclipse #
+.settings/
+.project
+.metadata/
+.classpath
+Servers/
+log/
+logs/
+bin/
+
+# Mac #
+.DS_Store

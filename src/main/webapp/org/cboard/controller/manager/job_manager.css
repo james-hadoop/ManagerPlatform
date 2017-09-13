@@ -1,0 +1,24 @@
+#section_condition {
+    border: 1px solid #D7D7D7;
+    font-size: 14px;
+    color: #F25824 padding-left: 5px;
+    margin-left: 5px;
+    padding: 15px;
+}
+
+.loading {
+  /* background: rgba(0, 0, 0, 0.7); */
+  width: 62px;
+  height: 62px;
+  text-align: center;
+  margin-left:600px;
+}
+
+.loading .loading-img {
+  width: 62px;
+  height: 62px;
+  background: url(../../images/loading.gif) center no-repeat;
+  background-size: 100%;
+  margin: 100px auto;
+  text-align: center;
+}

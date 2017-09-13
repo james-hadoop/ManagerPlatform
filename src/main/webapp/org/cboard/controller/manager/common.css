@@ -1,0 +1,211 @@
+#section_condition {
+    border: 1px solid #D7D7D7;
+    font-size: 14px;
+    color: #F25824 padding-left: 5px;
+    margin-left: 5px;
+    padding: 15px;
+}
+
+.loading {
+    /* background: rgba(0, 0, 0, 0.7); */
+    width: 62px;
+    height: 62px;
+    text-align: center;
+    margin-left: 600px;
+}
+
+.loading .loading-img {
+    width: 62px;
+    height: 62px;
+    background: url(../../images/loading.gif) center no-repeat;
+    background-size: 100%;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.margin-left-50 {
+    margin-left: 50px;
+}
+
+.margin-left-10 {
+    margin-left: 10px;
+}
+
+.margin-left-15 {
+    margin-left: 15px;
+}
+
+.margin-left-20 {
+    margin-left: 20px;
+}
+
+.margin-left-100 {
+    margin-left: 100px;
+}
+
+.margin-left-160 {
+    margin-left: 160px;
+}
+
+.margin-top-15 {
+    margin-top: 15px;
+}
+
+.margin-right-5 {
+    margin-right: 5px;
+}
+
+.margin-right-10 {
+    margin-right: 10px;
+}
+
+.margin-right-36 {
+    margin-right: 36px;
+}
+
+.table-name-input {
+    width: 312px;
+    margin-left: 15px;
+}
+
+.tag {
+    border: 1px solid #F25824;
+    font-size: 14px;
+    color: #F25824 padding-left: 5px;
+    margin-left: 5px;
+}
+
+.custom_hover, .operation, .tag, .clickstyle {
+    cursor: pointer;
+}
+
+.width-10 {
+    width: 10px;
+}
+
+.width-20 {
+    width: 20px;
+}
+
+.width-40 {
+    width: 40px;
+}
+
+.width-50 {
+    width: 40px;
+}
+
+.width-65 {
+    width: 65px;
+}
+
+.width-70 {
+    width: 70px;
+}
+
+.width-80 {
+    width: 80px;
+}
+
+.width-90 {
+    width: 90px;
+}
+
+.width-100 {
+    width: 100px;
+}
+
+.width-120 {
+    width: 120px;
+}
+
+.width-150 {
+    width: 150px;
+}
+
+.width-200 {
+    width: 200px;
+}
+
+.width-250 {
+    width: 250px;
+}
+
+.width-300 {
+    width: 300px;
+}
+
+.width-350 {
+    width: 350px;
+}
+
+.width-500 {
+    width: 500px;
+}
+
+.width-space {
+    width: 30px;
+}
+
+.custom-input {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.custom-delete-img-button {
+    width: 10px;
+    height: 10px;
+    border: 0px;
+    cursor: pointer;
+}
+
+.textbox, .textbox-text, .combo, .easyui-combobox{
+    height:34px;
+    font-size:14px;
+}
+
+.operation_tag{
+    font-size:12px;
+}
+
+#jobflow_detail_table{
+	font-size:8px;
+}
+
+.file-upload-submit {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 15px 20px;
+    cursor:pointer;
+    line-height:20px;
+    height:30px;
+    margin:5px 10px 10px 0;
+  display: inline-block;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  color: #888;
+  text-decoration: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -moz-box-shadow: 0 2px 0 0 #e8e8e8;
+  -webkit-box-shadow: 0 2px 0 0 #e8e8e8;
+  box-shadow: 0 2px 0 0 #e8e8e8;
+  padding: 6px 10px 4px 10px;
+  color: #fff;
+  background: #2f8ab9;
+  border: none;
+  -moz-box-shadow: 0 2px 0 0 #13648d;
+  -webkit-box-shadow: 0 2px 0 0 #13648d;
+  box-shadow: 0 2px 0 0 #13648d;
+  vertical-align: middle;
+  }
