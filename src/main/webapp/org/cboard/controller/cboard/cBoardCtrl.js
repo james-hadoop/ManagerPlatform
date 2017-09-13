@@ -38,9 +38,7 @@ JamesBoard.controller('JamesBoard', function ($scope, $location, $http, $q, $fil
     });
 
     $scope.isShowMenu = function (code) {
-        return !_.isUndefined(_.find($scope.menuList, function (menu) {
-            console.info(menu.menuCode+" vs "+ code);
-            
+        return !_.isUndefined(_.find($scope.menuList, function (menu) {            
             return menu.menuCode == code;
         }));
     };
