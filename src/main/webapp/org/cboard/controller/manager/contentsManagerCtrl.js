@@ -2,7 +2,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
     $("#job_manager_table").datagrid({
         iconCls : 'icon-ok',
         width : '100%',
-        height : 600,
+        height : 800,
         rownumbers : false,
         animate : true,
         collapsible : true,
@@ -27,14 +27,6 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             align : 'left',
             sortable : false,
             remoteSort : false
-        }
-        , {
-            field : 'hEventId',
-            title : '名称',
-            width : 100,
-            align : 'left',
-            sortable : false,
-            remoteSort : false
         }, {
             field : 'sEventTitleUrl',
             title : '显示URL',
@@ -43,7 +35,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         }, {
             field : 'sEventContentUrl',
             title : '跳转URL',
-            width : 300,
+            width : 330,
             align : 'left'
         }, {
             field : 'rEventCategoryDesc',
@@ -63,12 +55,12 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         }, {
             field : 'createTs',
             title : '创建时间',
-            width : 100,
+            width : 150,
             align : 'left'
         }, {
             field : 'updateTs',
             title : '更新时间',
-            width : 100,
+            width : 150,
             align : 'left'
         } ] ],
         onLoadSuccess : function(data) {
