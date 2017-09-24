@@ -1,48 +1,206 @@
 <div id="section_search" class="input-group" style="width: 100%;">
   <input id="search_condition" type="text" class="form-control"
-    placeholder="输入名称 / 描述 / 所有者" style="width: 400px;"> <span
+    placeholder="输入名称 / URL / 类型" style="width: 400px;"> <span
     class=""><button id="search" type="button"
-      class="btn btn-primary" style="width: 80px;">搜索</button></span>
-  <!-- &nbsp<span><button id="run" type="button" class="btn btn-default" style="width: 80px;">运行</button></span> -->
-  <div class="input-group-btn job_manager_page-toolbar">
-    <button type="button" class="btn btn-default dropdown-toggle"
-      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-      style="width: 80px;">
-      新增 <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="#" id="java_job">Java 作业</a></li>
-      <li><a href="#" id="shell_job">Shell 作业</a></li>
-      <li><a href="#" id="hive_job">Hive 作业</a></li>
-      <li><a href="#" id="data_sync_job">数据同步作业</a></li>
-    </ul>
-  </div>
-  &nbsp <span class="input-group-btn"><button
-      id="transform_to_jobflow" type="button"
-      class="btn btn-default restful_monitor_page-toolbar"
-      style="width: 80px;">转Jobflow</button></span> &nbsp <span
-    class="input-group-btn"><button id="delete" type="button"
+      class="btn btn-primary" style="width: 80px;">搜索</button></span> <span
+    class="input-group-btn"><button id="addEvent"
+      type="button" class="btn btn-default restful_monitor_page-toolbar"
+      style="width: 80px;">新增</button></span> &nbsp <span
+    class="input-group-btn"><button id="deleteEvent" type="button"
       class="btn btn-default restful_monitor_page-toolbar"
       style="width: 80px;">删除</button></span>
 </div>
 <hr />
 
 <div id="section_condition">
-  <div id="section_condition_type">
-    <b>类型</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-      id="section_condition_type-0" class="label label-danger">不限</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-      id="section_condition_type-1">Java</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-      id="section_condition_type-2">Hive</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-      id="section_condition_type-3">数据同步</span>
-  </div>
   <hr />
-  <div id="section_condition_filter">
-    <b>筛选条件</b>
-  </div>
 </div>
 <br />
 
 <div id="section_table">
   <table id="job_manager_table" class="table ">
   </table>
+</div>
+
+<!-- add_event_dialog -->
+<div id="add_event_dialog" class="modal fade" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="create_job_data_sync_dialog_title">创建事件</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class=" col-sm-2  control-label"
+              style="width: 100px;">事件名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_name-data" placeholder="必填" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">事件类别</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_description-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">事件类型</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">显示URL</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">跳转URL</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">是否激活</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">是否Banner</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">是否推荐</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">推荐序号</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+            data-dismiss="modal">关闭</button>
+          <button id="create_job_data_sync_dialog_save" type="button"
+            class="btn btn-primary">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- edit_event_dialog -->
+<div id="edit_event_dialog" class="modal fade" tabindex="-1"
+  role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="create_job_data_sync_dialog_title">编辑事件</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class=" col-sm-2  control-label"
+              style="width: 100px;">事件名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_name-data" placeholder="必填" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">事件类别</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_description-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">事件类型</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">显示URL</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="eventTitleUrl" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">跳转URL</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="eventContentUrl" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">是否激活</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">是否Banner</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">是否推荐</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2  control-label" style="width: 100px;">推荐序号</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"
+                id="param_run_memory-data" />
+            </div>
+          </div>
+
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"
+            data-dismiss="modal">关闭</button>
+          <button id="create_job_data_sync_dialog_save" type="button"
+            class="btn btn-primary">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

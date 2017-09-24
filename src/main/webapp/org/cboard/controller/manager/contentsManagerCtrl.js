@@ -3,7 +3,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         iconCls : 'icon-ok',
         width : '100%',
         height : 600,
-        rownumbers : true,
+        rownumbers : false,
         animate : true,
         collapsible : true,
         fitcolumns : true,
@@ -14,57 +14,62 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         striped : true,
         pageList : [ 20, 40, 60, 100, 1000 ],
         toolbar : "#toolbar",
-        url : "job/manager/loadAllNew",
-        idField : 'name',
+        url : "data/getTEventSummaryByType.json",
+        idField : 'hEventId',
         showFooter : false,
         columns : [ [ {
             field : 'ck',
             checkbox : true
         }, {
-            field : 'id',
+            field : 'hEventId',
             title : 'id',
             width : 100,
             align : 'left',
             sortable : false,
-            remoteSort : false,
-            hidden : true
-        }, {
-            field : 'jobType',
-            title : '任务类型',
+            remoteSort : false
+        }
+        , {
+            field : 'hEventId',
+            title : '名称',
             width : 100,
             align : 'left',
-            hidden : true
+            sortable : false,
+            remoteSort : false
         }, {
-            field : 'name',
-            title : '名称',
-            width : 400,
+            field : 'sEventTitleUrl',
+            title : '显示URL',
+            width : 100,
             align : 'left'
         }, {
-            field : 'description',
-            title : '描述',
-            width : 600,
+            field : 'sEventContentUrl',
+            title : '跳转URL',
+            width : 300,
             align : 'left'
         }, {
-            field : 'strJobType',
+            field : 'rEventCategoryDesc',
+            title : '类别',
+            width : 100,
+            align : 'left'
+        }, {
+            field : 'rEventTypeDesc',
             title : '类型',
             width : 100,
             align : 'left'
         }, {
-            field : 'strUpdateTime',
-            title : '上次修改',
-            width : 300,
+            field : 'sEventActiveInd',
+            title : '是否激活',
+            width : 100,
             align : 'left'
         }, {
-            field : 'createUserName',
-            title : '创建人',
-            width : 250,
+            field : 'createTs',
+            title : '创建时间',
+            width : 100,
             align : 'left'
         }, {
-            field : 'mysqlPrimaryKeys',
-            title : 'mysqlPrimaryKeys',
-            width : 250,
-            align : 'left',
-            hidden : true
+            field : 'updateTs',
+            title : '更新时间',
+            width : 100,
+            align : 'left'
         } ] ],
         onLoadSuccess : function(data) {
             if ($("#job_manager_page-isButtonShow").val() == 'no') {
@@ -74,10 +79,30 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             }
         },
         onLoadError : function() {
-            BootstrapDialog.show({
-                title : '错误',
-                message : '结果异常！'
-            });
+            alert('结果异常!');
+            // BootstrapDialog.show({
+            // title : '错误',
+            // message : '结果异常！'
+            // });
+        },
+        onSelect : function(value, row, index) {
+            var eventId = row.hEventId;
+            var eventTitleUrl = row.sEventTitleUrl;
+            var eventContentUrl = row.sEventContentUrl;
+            
+            $('#eventTitleUrl').val(eventTitleUrl);
+            $('#eventContentUrl').val(eventContentUrl);
+
+            $("#edit_event_dialog").modal('show');
         }
     });
+
+    $("#addEvent").bind('click', function() {
+        $("#add_event_dialog").modal('show');
+    });
+    
+    $("#deleteEvent").bind('click', function() {
+        alert('delete');
+    });
+
 } ]);
