@@ -10,11 +10,12 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         singleSelect : true,
         selectOnCheck : false,
         checkOnSelect : false,
-        pagination : true,
+        pagination : false,
         striped : true,
         pageList : [ 20, 40, 60, 100, 1000 ],
         toolbar : "#toolbar",
-        url : "data/getTEventSummaryByType.json",
+        //url : "data/getTEventSummaryByType.json",
+        url : "LeyaoManager/v1/service/event/postTEventSummaryByCondition.do",
         idField : 'hEventId',
         showFooter : false,
         columns : [ [ {
@@ -71,7 +72,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             }
         },
         onLoadError : function() {
-            alert('结果异常!');
+            //alert('结果异常!');
             // BootstrapDialog.show({
             // title : '错误',
             // message : '结果异常！'

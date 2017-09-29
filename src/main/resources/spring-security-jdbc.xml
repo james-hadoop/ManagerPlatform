@@ -23,6 +23,10 @@
       access="permitAll" />
     <security:intercept-url pattern="/css/**"
       access="permitAll" />
+      <security:intercept-url pattern="/v1/**"
+      access="permitAll" />
+      <security:intercept-url pattern="/LeyaoManager/**"
+      access="permitAll" />
     <security:intercept-url pattern="/**" access="!anonymous" />
     <security:form-login login-page="/login.do"
       username-parameter="username" password-parameter="password"
