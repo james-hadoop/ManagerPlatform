@@ -15,7 +15,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         pageList : [ 20, 40, 60, 100, 1000 ],
         toolbar : "#toolbar",
         //url : "data/getTEventSummaryByType.json",
-        url : "LeyaoManager/v1/service/event/postTEventSummaryByCondition.do",
+        url : "v1/service/event/postTEventSummaryByCondition.do",
         idField : 'hEventId',
         showFooter : false,
         columns : [ [ {

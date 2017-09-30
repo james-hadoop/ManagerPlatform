@@ -14,7 +14,7 @@ import com.leyao.app_service.entity.GridContent;
 import com.leyao.app_service.util.HttpClientUtils;
 
 @RestController
-@RequestMapping("/LeyaoManager/v1/service/event")
+@RequestMapping("/v1/service/event")
 public class HsEventController {
     private static final Logger logger = LoggerFactory.getLogger(HsEventController.class);
 
