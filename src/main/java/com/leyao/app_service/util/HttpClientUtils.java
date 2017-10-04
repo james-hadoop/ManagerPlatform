@@ -290,7 +290,7 @@ public class HttpClientUtils {
         try {
             httpPost = new HttpPost(url);
             HttpEntity entity = new StringEntity(postContent, defaultCharset);
-            httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
+            httpPost.setHeader("Content-Type", "application/json");
             httpPost.setEntity(entity);
 
             if (headers != null && headers.size() > 0) {

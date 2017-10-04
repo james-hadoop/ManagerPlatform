@@ -3,11 +3,11 @@
     placeholder="输入名称 / URL / 类型" style="width: 400px;"> <span
     class=""><button id="search" type="button"
       class="btn btn-primary" style="width: 80px;">搜索</button></span> <span
-    class="input-group-btn"><button id="addEvent"
-      type="button" class="btn btn-default restful_monitor_page-toolbar"
-      style="width: 80px;">新增</button></span> &nbsp <span
-    class="input-group-btn"><button id="deleteEvent" type="button"
+    class="input-group-btn"><button id="add_event" type="button"
       class="btn btn-default restful_monitor_page-toolbar"
+      style="width: 80px;">新增</button></span> &nbsp <span
+    class="input-group-btn"><button id="delete_event"
+      type="button" class="btn btn-default restful_monitor_page-toolbar"
       style="width: 80px;">删除</button></span>
 </div>
 <hr />
@@ -18,7 +18,7 @@
 <br />
 
 <div id="section_table">
-  <table id="job_manager_table" class="table ">
+  <table id="event_table" class="table ">
   </table>
 </div>
 
@@ -38,66 +38,83 @@
         <form class="form-horizontal">
           <div class="form-group">
             <label class=" col-sm-2  control-label"
-              style="width: 100px;">事件名称</label>
+              style="width: 120px;">事件名称</label>
             <div class="col-sm-10">
               <input type="text" class="form-control"
-                id="param_name-data" placeholder="必填" />
+                id="add_event_name" placeholder="必填" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">事件类别</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control"
-                id="param_description-data" />
+            <label class=" col-sm-2  control-label"
+              style="width: 120px;">事件类别</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="add_event_category">
+                <option value="0" selected="selected">选择</option>
+                <option value="1">乐谣活动</option>
+                <option value="2">乐谣教育</option>
+                <option value="3">艺术分享</option>
+                <option value="4">音乐专辑</option>
+              </select>
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">事件类型</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control"
-                id="param_run_memory-data" />
+            <label class=" col-sm-2  control-label"
+              style="width: 120px;">事件类型</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="add_event_type">
+                <option value="0" selected="selected">选择</option>
+                <option value="1">图像</option>
+                <option value="2">音频</option>
+                <option value="3">视频</option>
+              </select>
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">显示URL</label>
+            <label class="col-sm-2  control-label" style="width: 120px;">显示URL</label>
             <div class="col-sm-10">
               <input type="text" class="form-control"
-                id="param_run_memory-data" />
+                id="add_event_title_url" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">跳转URL</label>
+            <label class="col-sm-2  control-label" style="width: 120px;">跳转URL</label>
             <div class="col-sm-10">
               <input type="text" class="form-control"
-                id="param_run_memory-data" />
+                id="add_event_content_url" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">是否激活</label>
-            <div class="col-sm-10">
+            <label class="col-sm-2  control-label" style="width: 120px;">Banner序号</label>
+            <div class="col-sm-2">
               <input type="text" class="form-control"
-                id="param_run_memory-data" />
+                id="add_event_banner_position" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">是否Banner</label>
-            <div class="col-sm-10">
+            <label class="col-sm-2  control-label" style="width: 120px;">推荐序号</label>
+            <div class="col-sm-2">
               <input type="text" class="form-control"
-                id="param_run_memory-data" />
+                id="add_event_recommend_position" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">是否推荐</label>
+            <label for="add_event_is_active"
+              class="col-sm-2 control-label" style="width: 120px;">是否激活</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control"
-                id="param_run_memory-data" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">推荐序号</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control"
-                id="param_run_memory-data" />
+              <label class="checkbox-inline"> <input
+                type="radio" name="add_event_is_active" id="add_event"
+                value="0" checked> 是
+              </label> <label class="checkbox-inline"> <input
+                type="radio" name="add_event_is_active" id="add_event"
+                value="1" checked> 否
+              </label>
             </div>
           </div>
 
@@ -105,9 +122,10 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default"
             data-dismiss="modal">关闭</button>
-          <button id="create_job_data_sync_dialog_save" type="button"
+          <button id="add_event_dialog_save" type="button"
             class="btn btn-primary">保存</button>
         </div>
+
       </div>
     </div>
   </div>
@@ -130,66 +148,83 @@
         <form class="form-horizontal">
           <div class="form-group">
             <label class=" col-sm-2  control-label"
-              style="width: 100px;">事件名称</label>
+              style="width: 120px;">事件名称</label>
             <div class="col-sm-10">
               <input type="text" class="form-control"
-                id="param_name-data" placeholder="必填" />
+                id="edit_event_name" placeholder="必填" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">事件类别</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control"
-                id="param_description-data" />
+            <label class=" col-sm-2  control-label"
+              style="width: 120px;">事件类别</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="edit_event_category">
+                <option value="0" selected="selected">选择</option>
+                <option value="1">乐谣活动</option>
+                <option value="2">乐谣教育</option>
+                <option value="3">艺术分享</option>
+                <option value="4">音乐专辑</option>
+              </select>
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">事件类型</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control"
-                id="param_run_memory-data" />
+            <label class=" col-sm-2  control-label"
+              style="width: 120px;">事件类型</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="edit_event_type">
+                <option value="0" selected="selected">选择</option>
+                <option value="1">图像</option>
+                <option value="2">音频</option>
+                <option value="3">视频</option>
+              </select>
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">显示URL</label>
+            <label class="col-sm-2  control-label" style="width: 120px;">显示URL</label>
             <div class="col-sm-10">
               <input type="text" class="form-control"
-                id="eventTitleUrl" />
+                id="edit_event_title_url" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">跳转URL</label>
+            <label class="col-sm-2  control-label" style="width: 120px;">跳转URL</label>
             <div class="col-sm-10">
               <input type="text" class="form-control"
-                id="eventContentUrl" />
+                id="edit_event_content_url" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">是否激活</label>
-            <div class="col-sm-10">
+            <label class="col-sm-2  control-label" style="width: 120px;">Banner序号</label>
+            <div class="col-sm-2">
               <input type="text" class="form-control"
-                id="param_run_memory-data" />
+                id="edit_event_banner_position" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">是否Banner</label>
-            <div class="col-sm-10">
+            <label class="col-sm-2  control-label" style="width: 120px;">推荐序号</label>
+            <div class="col-sm-2">
               <input type="text" class="form-control"
-                id="param_run_memory-data" />
+                id="edit_event_recomend_position" />
             </div>
           </div>
+
           <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">是否推荐</label>
+            <label for="edit_event_is_active"
+              class="col-sm-2 control-label" style="width: 120px;">是否激活</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control"
-                id="param_run_memory-data" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2  control-label" style="width: 100px;">推荐序号</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control"
-                id="param_run_memory-data" />
+              <label class="checkbox-inline"> <input
+                type="radio" name="edit_event_is_active" id="edit_event"
+                value="0" checked> 是
+              </label> <label class="checkbox-inline"> <input
+                type="radio" name="edit_event_is_active" id="edit_event"
+                value="1"> 否
+              </label>
             </div>
           </div>
 
@@ -197,9 +232,10 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default"
             data-dismiss="modal">关闭</button>
-          <button id="create_job_data_sync_dialog_save" type="button"
+          <button id="edit_event_dialog_save" type="button"
             class="btn btn-primary">保存</button>
         </div>
+
       </div>
     </div>
   </div>

@@ -5,12 +5,13 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.leyao.app_service.entity.GridContent;
 import com.leyao.app_service.util.HttpClientUtils;
 
 @RestController
@@ -26,7 +27,6 @@ public class HsEventController {
                     @RequestParam(value = "sEventSearchContentTxt", required = false) String sEventSearchContentTxt) {
         logger.info("/v1/service/event/postTEventSummaryByCondition() called: sessionCode={}, page={}, rows={},hUserPhoneNr={},sEventCategoryCd{},sEventTypeCd={},sUserEventLikeInd={},sUserEventReadLogTxt={},sEventSearchContentTxt={}",
                         sessionCode, page, rows, hUserPhoneNr, sEventCategoryCd, sEventTypeCd, sUserEventLikeInd, sUserEventReadLogTxt, sEventSearchContentTxt);
-        GridContent gridContent = new GridContent();
         String result = null;
 
         try {
@@ -72,7 +72,6 @@ public class HsEventController {
                     @RequestParam(value = "sEventSearchContentTxt", required = false) String sEventSearchContentTxt) {
         logger.info("/v1/service/event/getTEventSummaryByCondition() called: sessionCode={}, page={}, rows={},hUserPhoneNr={},sEventCategoryCd{},sEventTypeCd={},sUserEventLikeInd={},sUserEventReadLogTxt={},sEventSearchContentTxt={}",
                         sessionCode, page, rows, hUserPhoneNr, sEventCategoryCd, sEventTypeCd, sUserEventLikeInd, sUserEventReadLogTxt, sEventSearchContentTxt);
-        GridContent gridContent = new GridContent();
         String result = null;
 
         try {
@@ -107,6 +106,38 @@ public class HsEventController {
             return result;
         }
 
-        return "done";
+        return result;
+    }
+
+    @RequestMapping(value = "/addTEventSummary", method = RequestMethod.POST)
+    @ResponseBody
+    public String addTEventSummary(@RequestBody String tEventSummaryString) {
+        logger.info("/v1/service/event/addTEventSummary() called: hEventId={}", tEventSummaryString);
+        String result = null;
+
+        try {
+
+            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/addTEventSummary", tEventSummaryString);
+        } catch (Exception e) {
+            logger.error("/v1/service/event/addTEventSummary()", e);
+            return result;
+        }
+        return result;
+    }
+    
+    @RequestMapping(value = "/editTEventSummary", method = RequestMethod.POST)
+    @ResponseBody
+    public String editTEventSummary(@RequestBody String tEventSummaryString) {
+        logger.info("/v1/service/event/editTEventSummary() called: hEventId={}", tEventSummaryString);
+        String result = null;
+
+        try {
+
+            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/editTEventSummary", tEventSummaryString);
+        } catch (Exception e) {
+            logger.error("/v1/service/event/editTEventSummary()", e);
+            return result;
+        }
+        return result;
     }
 }

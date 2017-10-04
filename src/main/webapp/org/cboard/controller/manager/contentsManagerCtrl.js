@@ -1,5 +1,5 @@
 JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
-    $("#job_manager_table").datagrid({
+    $("#event_table").datagrid({
         iconCls : 'icon-ok',
         width : '100%',
         height : 800,
@@ -14,7 +14,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         striped : true,
         pageList : [ 20, 40, 60, 100, 1000 ],
         toolbar : "#toolbar",
-        //url : "data/getTEventSummaryByType.json",
+        // url : "data/getTEventSummaryByType.json",
         url : "v1/service/event/postTEventSummaryByCondition.do",
         idField : 'hEventId',
         showFooter : false,
@@ -72,7 +72,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             }
         },
         onLoadError : function() {
-            //alert('结果异常!');
+            // alert('结果异常!');
             // BootstrapDialog.show({
             // title : '错误',
             // message : '结果异常！'
@@ -82,20 +82,127 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             var eventId = row.hEventId;
             var eventTitleUrl = row.sEventTitleUrl;
             var eventContentUrl = row.sEventContentUrl;
-            
-            $('#eventTitleUrl').val(eventTitleUrl);
-            $('#eventContentUrl').val(eventContentUrl);
+
+            $('#edit_event_title_url').val(eventTitleUrl);
+            $('#edit_event_content_url').val(eventContentUrl);
 
             $("#edit_event_dialog").modal('show');
         }
     });
 
-    $("#addEvent").bind('click', function() {
+    $("#add_event").bind('click', function() {
         $("#add_event_dialog").modal('show');
     });
-    
-    $("#deleteEvent").bind('click', function() {
+
+    $("#delete_event").bind('click', function() {
         alert('delete');
     });
+
+    $("#add_event_dialog_save").bind('click', function() {
+        var addEventName = $("#add_event_name").val();
+        var addEventCategory = $("#add_event_category").val();
+        var addEventType = $("#add_event_type").val();
+        var addEventTitleUrl = $("#add_event_title_url").val();
+        var addEventContentUrl = $("#add_event_content_url").val();
+        var addEventIsActive = $('input:radio[name="add_event_is_active"]:checked').val();
+        var addEventIsBanner = $('input:radio[name="add_event_is_banner"]:checked').val();
+        var addEventBannerPosition = $("#add_event_banner_position").val();
+        var addEventIsRecommend = $('input:radio[name="add_event_is_recommend"]:checked').val();
+        var addEventRecommendPosition = $("#add_event_recommend_position").val();
+
+        console.info('addEventName=' + addEventName);
+        console.info('addEventCategory=' + addEventCategory);
+        console.info('addEventType=' + addEventType);
+        console.info('addEventTitleUrl=' + addEventTitleUrl);
+        console.info('addEventContentUrl=' + addEventContentUrl);
+        console.info('addEventIsActive=' + addEventIsActive);
+        console.info('addEventIsBanner=' + addEventIsBanner);
+        console.info('addEventBannerPosition=' + addEventBannerPosition);
+        console.info('addEventIsRecommend=' + addEventIsRecommend);
+        console.info('addEventRecommendPosition=' + addEventRecommendPosition);
+
+        var datas = {
+            "sEventCategoryCd" : addEventCategory,
+            "sEventTypeCd" : addEventType,
+            "sEventTitleUrl" : addEventTitleUrl,
+            "sEventContentUrl" : addEventContentUrl,
+            "sEventActiveInd" : addEventIsActive,
+            "sEventTypeCd" : addEventType,
+            "sEventBannerPositionCd" : addEventBannerPosition,
+            "sEventRecomPositionCd" : addEventRecommendPosition
+        };
+
+        ajaxRequest(datas, "addTEventSummary.do");
+    });
+
+    $("#edit_event_dialog_save").bind('click', function() {
+        var editEventName = $("#edit_event_name").val();
+        var editEventCategory = $("#edit_event_category").val();
+        var editEventType = $("#edit_event_type").val();
+        var editEventTitleUrl = $("#edit_event_title_url").val();
+        var editEventContentUrl = $("#edit_event_content_url").val();
+        var editEventIsActive = $('input:radio[name="edit_event_is_active"]:checked').val();
+        var editEventIsBanner = $('input:radio[name="edit_event_is_banner"]:checked').val();
+        var editEventBannerPosition = $("#edit_event_banner_position").val();
+        var editEventIsRecommend = $('input:radio[name="edit_event_is_recommend"]:checked').val();
+        var editEventRecommendPosition = $("#edit_event_recommend_position").val();
+
+        console.info('editEventName=' + editEventName);
+        console.info('editEventCategory=' + editEventCategory);
+        console.info('editEventType=' + editEventType);
+        console.info('editEventTitleUrl=' + editEventTitleUrl);
+        console.info('editEventContentUrl=' + editEventContentUrl);
+        console.info('editEventIsActive=' + editEventIsActive);
+        console.info('editEventIsBanner=' + editEventIsBanner);
+        console.info('editEventBannerPosition=' + editEventBannerPosition);
+        console.info('editEventIsRecommend=' + editEventIsRecommend);
+        console.info('editEventRecommendPosition=' + editEventRecommendPosition);
+
+        var datas = {
+            "sEventCategoryCd" : editEventCategory,
+            "sEventTypeCd" : editEventType,
+            "sEventTitleUrl" : editEventTitleUrl,
+            "sEventContentUrl" : editEventContentUrl,
+            "sEventActiveInd" : editEventIsActive,
+            "sEventTypeCd" : editEventType,
+            "sEventBannerPositionCd" : editEventBannerPosition,
+            "sEventRecomPositionCd" : editEventRecommendPosition
+        };
+
+        ajaxRequest(datas, "editTEventSummary.do");
+    });
+
+    ajaxRequest = function(datas, oper) {
+        $.ajax({
+            type : "POST",
+            url : "v1/service/event/" + oper,
+            data : JSON.stringify(datas),
+            contentType : "application/json",
+            dataType : "json",
+            success : function(data) {
+                if (data != null) {
+                    if (data.returnFlag == "ok") {
+                        BootstrapDialog.show({
+                            title : '结果',
+                            message : '操作成功!'
+                        });
+
+                        window.location.reload();
+                    } else {
+                        BootstrapDialog.show({
+                            title : '结果',
+                            message : '操作失败！'
+                        });
+                    }
+                }
+            },
+            error : function(data) {
+                BootstrapDialog.show({
+                    title : '结果',
+                    message : '后台请求失败！'
+                });
+            }
+        });
+    };
 
 } ]);
