@@ -10,7 +10,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         singleSelect : true,
         selectOnCheck : false,
         checkOnSelect : false,
-        pagination : false,
+        pagination : true,
         striped : true,
         pageList : [ 20, 40, 60, 100, 1000 ],
         toolbar : "#toolbar",
@@ -119,8 +119,22 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             alert('请选择一个Job!');
             return;
         } else {
+            var eventId = row.hEventId;
+            var eventTitleUrl = row.sEventTitleUrl;
+            var eventContentUrl = row.sEventContentUrl;
+            var eventCategory = row.rEventCategoryCd;
+            var eventType = row.sEventTypeCd;
+            var eventBannerPosition=row.sEventBannerPositionCd;
+            var eventRecommendPosition=row.sEventRecomPositionCd;
+            
             datas = {
-                "hEventId" : row.hEventId
+                "hEventId" : eventId,
+                "sEventCategoryCd" : eventCategory,
+                "sEventTypeCd" : eventType,
+                "sEventTitleUrl" : eventTitleUrl,
+                "sEventContentUrl" : eventContentUrl,
+                "sEventBannerPositionCd" : eventBannerPosition,
+                "sEventRecomPositionCd" : eventRecommendPosition                
             };
 
             ajaxRequest(datas, "deleteTEventSummary.do");
@@ -213,7 +227,9 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             dataType : "json",
             success : function(data) {
                 if (data != null) {
-                    if (data.returnFlag == "ok") {
+                    console.info(data);
+                    
+                    if (data.responseResult == "SUCCESS") {
                         BootstrapDialog.show({
                             title : '结果',
                             message : '操作成功!'
