@@ -10,7 +10,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         singleSelect : true,
         selectOnCheck : false,
         checkOnSelect : false,
-        pagination : true,
+        pagination : false,
         striped : true,
         pageList : [ 20, 40, 60, 100, 1000 ],
         toolbar : "#toolbar",
@@ -124,9 +124,9 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             var eventContentUrl = row.sEventContentUrl;
             var eventCategory = row.rEventCategoryCd;
             var eventType = row.sEventTypeCd;
-            var eventBannerPosition=row.sEventBannerPositionCd;
-            var eventRecommendPosition=row.sEventRecomPositionCd;
-            
+            var eventBannerPosition = row.sEventBannerPositionCd;
+            var eventRecommendPosition = row.sEventRecomPositionCd;
+
             datas = {
                 "hEventId" : eventId,
                 "sEventCategoryCd" : eventCategory,
@@ -134,7 +134,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
                 "sEventTitleUrl" : eventTitleUrl,
                 "sEventContentUrl" : eventContentUrl,
                 "sEventBannerPositionCd" : eventBannerPosition,
-                "sEventRecomPositionCd" : eventRecommendPosition                
+                "sEventRecomPositionCd" : eventRecommendPosition
             };
 
             ajaxRequest(datas, "deleteTEventSummary.do");
@@ -228,7 +228,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             success : function(data) {
                 if (data != null) {
                     console.info(data);
-                    
+
                     if (data.responseResult == "SUCCESS") {
                         BootstrapDialog.show({
                             title : '结果',
@@ -252,5 +252,4 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             }
         });
     };
-
 } ]);
