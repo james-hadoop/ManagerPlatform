@@ -48,7 +48,20 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             title : '类型',
             width : 100,
             align : 'left'
+        },
+        {
+            field : 'sEventCategoryCd',
+            title : '类别编码',
+            width : 100,
+            align : 'left',
+            hidden:true
         }, {
+            field : 'sEventTypeCd',
+            title : '类型编码',
+            width : 100,
+            align : 'left',
+            hidden:true
+        },{
             field : 'sEventActiveInd',
             title : '是否激活',
             width : 100,
@@ -80,11 +93,16 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         },
         onSelect : function(value, row, index) {
             var eventId = row.hEventId;
-            var eventTitleUrl = row.sEventTitleUrl;
-            var eventContentUrl = row.sEventContentUrl;
+            var eventTitleUrl=row.sEventTitleUrl;
+            var eventContentUrl=row.sEventContentUrl;
+            var eventCategory=row.rEventCategoryCd;
+            var eventType=row.sEventTypeCd;
 
+            $('#edit_event_id').val(eventId);
             $('#edit_event_title_url').val(eventTitleUrl);
             $('#edit_event_content_url').val(eventContentUrl);
+            $('#edit_event_category').val(eventCategory);
+            $('#edit_event_type').val(eventType);
 
             $("#edit_event_dialog").modal('show');
         }
@@ -95,7 +113,9 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
     });
 
     $("#delete_event").bind('click', function() {
-        alert('delete');
+        var eventId = $("#hEventId").val();
+        
+        alert('delete: '+eventId);
     });
 
     $("#add_event_dialog_save").bind('click', function() {
@@ -136,6 +156,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
     });
 
     $("#edit_event_dialog_save").bind('click', function() {
+        var editEventId = $("#edit_event_id").val();
         var editEventName = $("#edit_event_name").val();
         var editEventCategory = $("#edit_event_category").val();
         var editEventType = $("#edit_event_type").val();
@@ -147,6 +168,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         var editEventIsRecommend = $('input:radio[name="edit_event_is_recommend"]:checked').val();
         var editEventRecommendPosition = $("#edit_event_recommend_position").val();
 
+        console.info('editEventId=' + editEventId);
         console.info('editEventName=' + editEventName);
         console.info('editEventCategory=' + editEventCategory);
         console.info('editEventType=' + editEventType);
@@ -159,6 +181,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         console.info('editEventRecommendPosition=' + editEventRecommendPosition);
 
         var datas = {
+            "hEventId":editEventId,
             "sEventCategoryCd" : editEventCategory,
             "sEventTypeCd" : editEventType,
             "sEventTitleUrl" : editEventTitleUrl,
