@@ -152,6 +152,8 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         var addEventBannerPosition = $("#add_event_banner_position").val();
         var addEventIsRecommend = $('input:radio[name="add_event_is_recommend"]:checked').val();
         var addEventRecommendPosition = $("#add_event_recommend_position").val();
+        var addEventSubContent=$("#add_event_sub_content").val();
+        //var sEventSubContent
 
         console.info('addEventName=' + addEventName);
         console.info('addEventCategory=' + addEventCategory);
@@ -163,6 +165,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         console.info('addEventBannerPosition=' + addEventBannerPosition);
         console.info('addEventIsRecommend=' + addEventIsRecommend);
         console.info('addEventRecommendPosition=' + addEventRecommendPosition);
+        console.info('addEventSubContent=' + addEventSubContent);
 
         var datas = {
             "sEventCategoryCd" : addEventCategory,
@@ -172,7 +175,8 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             "sEventActiveInd" : addEventIsActive,
             "sEventTypeCd" : addEventType,
             "sEventBannerPositionCd" : addEventBannerPosition,
-            "sEventRecomPositionCd" : addEventRecommendPosition
+            "sEventRecomPositionCd" : addEventRecommendPosition,
+            "sEventSubContent":addEventSubContent
         };
 
         ajaxRequest(datas, "addTEventSummary.do");
@@ -190,18 +194,19 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         var editEventBannerPosition = $("#edit_event_banner_position").val();
         var editEventIsRecommend = $('input:radio[name="edit_event_is_recommend"]:checked').val();
         var editEventRecommendPosition = $("#edit_event_recommend_position").val();
+        var editEventSubContent=$("#edit_event_sub_content").val();
 
-        console.info('editEventId=' + editEventId);
-        console.info('editEventName=' + editEventName);
-        console.info('editEventCategory=' + editEventCategory);
-        console.info('editEventType=' + editEventType);
-        console.info('editEventTitleUrl=' + editEventTitleUrl);
-        console.info('editEventContentUrl=' + editEventContentUrl);
-        console.info('editEventIsActive=' + editEventIsActive);
-        console.info('editEventIsBanner=' + editEventIsBanner);
-        console.info('editEventBannerPosition=' + editEventBannerPosition);
-        console.info('editEventIsRecommend=' + editEventIsRecommend);
-        console.info('editEventRecommendPosition=' + editEventRecommendPosition);
+//        console.info('editEventId=' + editEventId);
+//        console.info('editEventName=' + editEventName);
+//        console.info('editEventCategory=' + editEventCategory);
+//        console.info('editEventType=' + editEventType);
+//        console.info('editEventTitleUrl=' + editEventTitleUrl);
+//        console.info('editEventContentUrl=' + editEventContentUrl);
+//        console.info('editEventIsActive=' + editEventIsActive);
+//        console.info('editEventIsBanner=' + editEventIsBanner);
+//        console.info('editEventBannerPosition=' + editEventBannerPosition);
+//        console.info('editEventIsRecommend=' + editEventIsRecommend);
+//        console.info('editEventRecommendPosition=' + editEventRecommendPosition);
 
         var datas = {
             "hEventId" : editEventId,
@@ -212,7 +217,8 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             "sEventActiveInd" : editEventIsActive,
             "sEventTypeCd" : editEventType,
             "sEventBannerPositionCd" : editEventBannerPosition,
-            "sEventRecomPositionCd" : editEventRecommendPosition
+            "sEventRecomPositionCd" : editEventRecommendPosition,
+            "sEventSubContent":editEventSubContent
         };
 
         ajaxRequest(datas, "editTEventSummary.do");
