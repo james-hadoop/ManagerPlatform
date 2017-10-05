@@ -48,20 +48,19 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             title : '类型',
             width : 100,
             align : 'left'
-        },
-        {
+        }, {
             field : 'sEventCategoryCd',
             title : '类别编码',
             width : 100,
             align : 'left',
-            hidden:true
+            hidden : true
         }, {
             field : 'sEventTypeCd',
             title : '类型编码',
             width : 100,
             align : 'left',
-            hidden:true
-        },{
+            hidden : true
+        }, {
             field : 'sEventActiveInd',
             title : '是否激活',
             width : 100,
@@ -93,10 +92,10 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         },
         onSelect : function(value, row, index) {
             var eventId = row.hEventId;
-            var eventTitleUrl=row.sEventTitleUrl;
-            var eventContentUrl=row.sEventContentUrl;
-            var eventCategory=row.rEventCategoryCd;
-            var eventType=row.sEventTypeCd;
+            var eventTitleUrl = row.sEventTitleUrl;
+            var eventContentUrl = row.sEventContentUrl;
+            var eventCategory = row.rEventCategoryCd;
+            var eventType = row.sEventTypeCd;
 
             $('#edit_event_id').val(eventId);
             $('#edit_event_title_url').val(eventTitleUrl);
@@ -113,9 +112,19 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
     });
 
     $("#delete_event").bind('click', function() {
-        var eventId = $("#hEventId").val();
-        
-        alert('delete: '+eventId);
+        var rows = $('#event_table').datagrid('getChecked');
+        var row = rows[0];
+
+        if (0 == rows.length) {
+            alert('请选择一个Job!');
+            return;
+        } else {
+            datas = {
+                "hEventId" : row.hEventId
+            };
+
+            ajaxRequest(datas, "deleteTEventSummary.do");
+        }
     });
 
     $("#add_event_dialog_save").bind('click', function() {
@@ -181,7 +190,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         console.info('editEventRecommendPosition=' + editEventRecommendPosition);
 
         var datas = {
-            "hEventId":editEventId,
+            "hEventId" : editEventId,
             "sEventCategoryCd" : editEventCategory,
             "sEventTypeCd" : editEventType,
             "sEventTitleUrl" : editEventTitleUrl,
