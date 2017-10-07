@@ -97,6 +97,8 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             var eventCategory = row.sEventCategoryCd;
             var eventType = row.sEventTypeCd;
             var eventSubContent = row.sEventSubContent;
+            var eventBannerPosition=row.sEventBannerPositionCd;
+            var eventRecomPosition=row.sEventRecomPositionCd;
             
             console.info(eventSubContent);
 
@@ -106,6 +108,8 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             $('#edit_event_category').val(eventCategory);
             $('#edit_event_type').val(eventType);
             $('#edit_event_sub_content').val(eventSubContent);
+            $('#edit_event_banner_position').val(eventBannerPosition);
+            $('#edit_event_recomend_position').val(eventRecomPosition);
 
             $("#edit_event_dialog").modal('show');
         }
