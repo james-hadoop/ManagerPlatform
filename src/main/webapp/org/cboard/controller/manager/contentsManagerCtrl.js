@@ -94,14 +94,18 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             var eventId = row.hEventId;
             var eventTitleUrl = row.sEventTitleUrl;
             var eventContentUrl = row.sEventContentUrl;
-            var eventCategory = row.rEventCategoryCd;
+            var eventCategory = row.sEventCategoryCd;
             var eventType = row.sEventTypeCd;
+            var eventSubContent = row.sEventSubContent;
+            
+            console.info(eventSubContent);
 
             $('#edit_event_id').val(eventId);
             $('#edit_event_title_url').val(eventTitleUrl);
             $('#edit_event_content_url').val(eventContentUrl);
             $('#edit_event_category').val(eventCategory);
             $('#edit_event_type').val(eventType);
+            $('#edit_event_sub_content').val(eventSubContent);
 
             $("#edit_event_dialog").modal('show');
         }
