@@ -1,4 +1,4 @@
-JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
+JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
     $("#event_table").datagrid({
         iconCls : 'icon-ok',
         width : '100%',
@@ -96,11 +96,11 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             var eventContentUrl = row.sEventContentUrl;
             var eventCategory = row.sEventCategoryCd;
             var eventType = row.sEventTypeCd;
-            var eventSubContentString = row.sEventSubContentString;
+            var eventSubContentString = row.eventSubContentString;
             var eventBannerPosition=row.sEventBannerPositionCd;
             var eventRecomPosition=row.sEventRecomPositionCd;
             
-            console.info(eventSubContentString);
+            console.info(eventSubContent);
 
             $('#edit_event_id').val(eventId);
             $('#edit_event_title_url').val(eventTitleUrl);
@@ -226,7 +226,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             "sEventTypeCd" : editEventType,
             "sEventBannerPositionCd" : editEventBannerPosition,
             "sEventRecomPositionCd" : editEventRecommendPosition,
-            "sEventSubContentString":editEventSubContent
+            "sEventSubContent":editEventSubContent
         };
 
         ajaxRequest(datas, "editTEventSummary.do");

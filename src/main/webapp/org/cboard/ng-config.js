@@ -107,8 +107,15 @@ angular.module('JamesBoard').config(['$stateProvider', function ($stateProvider)
             url: '/messagesManager',
             templateUrl: 'org/cboard/view/manager/messagesManager.html',
             controller: 'messagesManagerCtrl'
+        }).state('manager.usersManager', {
+            url: '/usersManager',
+            templateUrl: 'org/cboard/view/manager/usersManager.html',
+            controller: 'usersManagerCtrl'
+        }).state('manager.resourcesManager', {
+            url: '/resourcesManager',
+            templateUrl: 'org/cboard/view/manager/resourcesManager.html',
+            controller: 'resourcesManagerCtrl'
         });
-
 }]);
 
 angular.module('JamesBoard').factory('sessionHelper', ["$rootScope", function ($rootScope) {

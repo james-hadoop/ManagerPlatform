@@ -42,8 +42,10 @@
 		"SKILL": "Skill",
 		"MANAGER": "Manager",
 		"CONTENTS_MANAGER":"Contents",
-		"MESSAGES_MANAGER":"Messages"
-	},
+		"MESSAGES_MANAGER":"Messages",
+		"USERS_MANAGER":"Users",
+		"RESOURCES_MANAGER":"Resources"
+},
 	"HEADER": {
 		"SIGN_OUT": "SignOut"
 	},

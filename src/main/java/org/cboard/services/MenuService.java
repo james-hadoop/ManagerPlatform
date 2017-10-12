@@ -38,6 +38,8 @@ public class MenuService {
         menuList.add(new DashboardMenu(15, -1, "SIDEBAR.MANAGER", "manager"));
         menuList.add(new DashboardMenu(16, 15, "SIDEBAR.CONTENTS_MANAGER", "manager.contentsManager"));
         menuList.add(new DashboardMenu(17, 15, "SIDEBAR.MESSAGES_MANAGER", "manager.messagesManager"));
+        menuList.add(new DashboardMenu(18, 15, "SIDEBAR.USERS_MANAGER", "manager.usersManager"));
+        menuList.add(new DashboardMenu(19, 15, "SIDEBAR.RESOURCES_MANAGER", "manager.resourcesManager"));
     }
 
     public List<DashboardMenu> getMenuList() {
