@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.leyao.app_service.entity.hs_event.enums.REventCategoryEnum;
 import com.leyao.app_service.entity.hs_event.enums.REventTypeEnum;
+import com.leyao.app_service.util.DateUtil;
 
 public class TEventSummary {
     private Long hEventId;
@@ -25,9 +26,13 @@ public class TEventSummary {
     private Integer sEventActiveInd = 0;
 
     private Date createTs;
+    
+    private String createTsString;
 
     private Date updateTs;
 
+    private String updateTsString;
+    
     private String sEventSearchContentTxt = "?";
 
     private List<String> sEventSubContent1UrlList = new ArrayList<String>();
@@ -166,5 +171,21 @@ public class TEventSummary {
 
     public void setsEventRecomPositionCd(Integer sEventRecomPositionCd) {
         this.sEventRecomPositionCd = sEventRecomPositionCd;
+    }
+
+    public String getCreateTsString() {
+        return DateUtil.DateToString(createTs);
+    }
+
+    public void setCreateTsString(String createTsString) {
+        this.createTsString = createTsString;
+    }
+
+    public String getUpdateTsString() {
+        return DateUtil.DateToString(updateTs);
+    }
+
+    public void setUpdateTsString(String updateTsString) {
+        this.updateTsString = updateTsString;
     }
 }

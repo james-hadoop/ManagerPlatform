@@ -66,12 +66,12 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             width : 100,
             align : 'left'
         }, {
-            field : 'createTs',
+            field : 'createTsString',
             title : '创建时间',
             width : 150,
             align : 'left'
         }, {
-            field : 'updateTs',
+            field : 'updateTsString',
             title : '更新时间',
             width : 150,
             align : 'left'

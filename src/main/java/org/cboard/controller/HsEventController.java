@@ -55,7 +55,7 @@ public class HsEventController {
                 paramMap.put("sEventSearchContentTxt", sEventSearchContentTxt);
             }
 
-            result = HttpClientUtils.httpGet("http://localhost:8088/v1/service/event/getTEventSummaryByCondition?sessionCode=hello", paramMap);
+            result = HttpClientUtils.httpGet("http://localhost:8088/v1/service/event/getTEventSummaryByConditionGlobal?sessionCode=hello", paramMap);
         } catch (Exception e) {
             logger.error("/v1/service/event/postTEventSummaryByCondition()", e);
             return result;
