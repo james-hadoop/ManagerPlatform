@@ -30,12 +30,9 @@ public class HsEventController {
         String result = null;
 
         try {
-            int start = (page - 1) * rows;
-            int end = rows;
-
             Map<String, Object> paramMap = new HashMap<String, Object>();
-            paramMap.put("start", start);
-            paramMap.put("end", end);
+            paramMap.put("page", page);
+            paramMap.put("rows", rows);
             if (null != hUserPhoneNr) {
                 paramMap.put("hUserPhoneNr", hUserPhoneNr);
             }
