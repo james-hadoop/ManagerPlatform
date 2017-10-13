@@ -1,10 +1,14 @@
 package org.cboard.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,13 +20,27 @@ public class HsUserController {
     private static final Logger logger = LoggerFactory.getLogger(HsUserController.class);
 
     @RequestMapping(value = "/get", method = RequestMethod.POST)
-    @ResponseBody
-    public String get(@RequestBody String parameters) {
-        logger.info("/v1/service/user/get() called: parameters={}", parameters);
+    public String get(@RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "rows", defaultValue = "10") Integer rows,
+            @RequestParam(value = "sessionCode", defaultValue = "NoVerificaiton") String sessionCode,
+            @RequestParam(value = "hUserPhoneNr", required = false) Long hUserPhoneNr) {
+        logger.info("/v1/service/user/get() called: hUserPhoneNr={}", hUserPhoneNr);
         String result = null;
 
         try {
-            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/user/getTUserSummary", parameters);
+            Map<String, Object> paramMap = new HashMap<String, Object>();
+            paramMap.put("page", page);
+            paramMap.put("rows", rows);
+            if (null != hUserPhoneNr) {
+                paramMap.put("hUserPhoneNr", hUserPhoneNr);
+            }
+            if (null != sessionCode) {
+                paramMap.put("sessionCode", sessionCode);
+            }else {
+                paramMap.put("sessionCode", "NoVerificaiton");
+            }
+
+            result = HttpClientUtils.httpGet("http://localhost:8088/v1/service/user/getTUserSummary", paramMap);
         } catch (Exception e) {
             logger.error("/v1/service/user/get() called: parameters={}", e);
             return result;

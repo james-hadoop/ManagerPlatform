@@ -15,8 +15,8 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout', func
         pageSize: 20,
         pageList : [ 20, 40, 60, 100, 1000 ],
         toolbar : "#toolbar",
-        url : "/v1/service/user/get.do",
-        idField : 'hEventId',
+        url : "v1/service/user/get.do",
+        idField : 'hUserId',
         showFooter : false,
         columns : [ [ {
             field : 'ck',
@@ -53,8 +53,7 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout', func
             field : 'sUserGenderDesc',
             title : '性别',
             width : 100,
-            align : 'left',
-            hidden : true
+            align : 'left'
         }, {
             field : 'sUserProfileUrl',
             title : '头像URL',
