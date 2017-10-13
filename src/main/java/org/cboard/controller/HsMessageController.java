@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.leyao.app_service.util.HttpClientUtils;
+
 @RestController
 @RequestMapping("/v1/service/message")
 public class HsMessageController {
@@ -15,17 +17,15 @@ public class HsMessageController {
 
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
-    public String get(@RequestBody String record) {
-        logger.info("/v1/service/user/get() called: record={}", record);
+    public String get(@RequestBody String parameters) {
+        logger.info("/v1/service/message/get() called: parameters={}", parameters);
         String result = null;
 
         try {
-
-            // result =
-            // HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/addTEventSummary",
-            // tEventSummaryString);
+            result = HttpClientUtils
+                    .httpPost("http://localhost:8088/v1/service/event/getTMessageSummaryListByCondition", parameters);
         } catch (Exception e) {
-            logger.error("/v1/service/user/get() called: record={}", e);
+            logger.error("/v1/service/message/get() called: parameters={}", e);
             return result;
         }
         return result;
@@ -33,17 +33,14 @@ public class HsMessageController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public String add(@RequestBody String record) {
-        logger.info("/v1/service/user/add() called: record={}", record);
+    public String add(@RequestBody String parameters) {
+        logger.info("/v1/service/message/add() called: parameters={}", parameters);
         String result = null;
 
         try {
-
-            // result =
-            // HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/addTEventSummary",
-            // tEventSummaryString);
+            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/addTMessageSummary", parameters);
         } catch (Exception e) {
-            logger.error("/v1/service/user/add() called: record={}", e);
+            logger.error("/v1/service/message/add() called: parameters={}", e);
             return result;
         }
         return result;
@@ -51,17 +48,14 @@ public class HsMessageController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     @ResponseBody
-    public String edit(@RequestBody String record) {
-        logger.info("/v1/service/user/edit() called: record={}", record);
+    public String edit(@RequestBody String parameters) {
+        logger.info("/v1/service/message/edit() called: parameters={}", parameters);
         String result = null;
 
         try {
-
-            // result =
-            // HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/addTEventSummary",
-            // tEventSummaryString);
+            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/editTMessageSummary", parameters);
         } catch (Exception e) {
-            logger.error("/v1/service/user/edit() called: record={}", e);
+            logger.error("/v1/service/message/edit() called: parameters={}", e);
             return result;
         }
         return result;
@@ -69,17 +63,15 @@ public class HsMessageController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(@RequestBody String record) {
-        logger.info("/v1/service/user/delete() called: record={}", record);
+    public String delete(@RequestBody String parameters) {
+        logger.info("/v1/service/message/delete() called: parameters={}", parameters);
         String result = null;
 
         try {
-
-            // result =
-            // HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/addTEventSummary",
-            // tEventSummaryString);
+            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/deleteTMessageSummary",
+                    parameters);
         } catch (Exception e) {
-            logger.error("/v1/service/user/delete() called: record={}", e);
+            logger.error("/v1/service/message/delete() called: parameters={}", e);
             return result;
         }
         return result;

@@ -32,12 +32,12 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         }, {
             field : 'sEventTitleUrl',
             title : '显示URL',
-            width : 100,
+            width : 150,
             align : 'left'
         }, {
             field : 'sEventContentUrl',
             title : '跳转URL',
-            width : 330,
+            width : 380,
             align : 'left'
         }, {
             field : 'rEventCategoryDesc',
