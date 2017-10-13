@@ -1,10 +1,14 @@
 package org.cboard.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,16 +20,38 @@ public class HsMessageController {
     private static final Logger logger = LoggerFactory.getLogger(HsMessageController.class);
 
     @RequestMapping(value = "/get", method = RequestMethod.POST)
-    @ResponseBody
-    public String get(@RequestBody String parameters) {
-        logger.info("/v1/service/message/get() called: parameters={}", parameters);
+    public String get(@RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "rows", defaultValue = "10") Integer rows,
+            @RequestParam(value = "sessionCode", defaultValue = "NoVerificaiton") String sessionCode,
+            @RequestParam(value = "sMessageActiveInd", required = false) Long sMessageActiveInd,
+            @RequestParam(value = "sMessageCategoryCd", required = false) Long sMessageCategoryCd,
+            @RequestParam(value = "sMessageContentStr", required = false) String sMessageContentStr) {
+        logger.info("/v1/service/message/get() called: sMessageActiveInd={}", sMessageActiveInd);
         String result = null;
 
         try {
-            result = HttpClientUtils
-                    .httpPost("http://localhost:8088/v1/service/event/getTMessageSummaryListByCondition", parameters);
+            Map<String, Object> paramMap = new HashMap<String, Object>();
+            paramMap.put("page", page);
+            paramMap.put("rows", rows);
+            if (null != sessionCode) {
+                paramMap.put("sessionCode", sessionCode);
+            } else {
+                paramMap.put("sessionCode", "NoVerificaiton");
+            }
+            if (null != sMessageActiveInd) {
+                paramMap.put("hUserPhoneNr", sMessageActiveInd);
+            }
+            if (null != sMessageActiveInd) {
+                paramMap.put("sMessageCategoryCd", sMessageCategoryCd);
+            }
+            if (null != sMessageActiveInd) {
+                paramMap.put("sMessageContentStr", sMessageContentStr);
+            }
+
+            result = HttpClientUtils.httpGet("http://localhost:8088/v1/service/message/getTMessageSummaryListByCondition",
+                    paramMap);
         } catch (Exception e) {
-            logger.error("/v1/service/message/get() called: parameters={}", e);
+            logger.error("/v1/service/message/get() called: sMessageActiveInd={}", e);
             return result;
         }
         return result;
@@ -38,7 +64,7 @@ public class HsMessageController {
         String result = null;
 
         try {
-            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/addTMessageSummary", parameters);
+            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/message/addTMessageSummary", parameters);
         } catch (Exception e) {
             logger.error("/v1/service/message/add() called: parameters={}", e);
             return result;
@@ -53,7 +79,7 @@ public class HsMessageController {
         String result = null;
 
         try {
-            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/editTMessageSummary", parameters);
+            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/message/editTMessageSummary", parameters);
         } catch (Exception e) {
             logger.error("/v1/service/message/edit() called: parameters={}", e);
             return result;
@@ -68,7 +94,7 @@ public class HsMessageController {
         String result = null;
 
         try {
-            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/event/deleteTMessageSummary",
+            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/message/deleteTMessageSummary",
                     parameters);
         } catch (Exception e) {
             logger.error("/v1/service/message/delete() called: parameters={}", e);
