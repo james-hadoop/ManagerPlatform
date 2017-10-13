@@ -3,75 +3,76 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout', func
         iconCls : 'icon-ok',
         width : '100%',
         height : 800,
-        rownumbers : false,
+        rownumbers : true,
         animate : true,
         collapsible : true,
         fitcolumns : true,
         singleSelect : true,
         selectOnCheck : false,
         checkOnSelect : false,
-        pagination : false,
+        pagination : true,
         striped : true,
+        pageSize: 20,
         pageList : [ 20, 40, 60, 100, 1000 ],
         toolbar : "#toolbar",
-        // url : "data/getTEventSummaryByType.json",
-        url : "v1/service/event/postTEventSummaryByCondition.do",
+        url : "/v1/service/user/get.do",
         idField : 'hEventId',
         showFooter : false,
         columns : [ [ {
             field : 'ck',
             checkbox : true
         }, {
-            field : 'hEventId',
+            field : 'hUserId',
             title : 'id',
             width : 100,
             align : 'left',
             sortable : false,
             remoteSort : false
         }, {
-            field : 'sEventTitleUrl',
-            title : '显示URL',
+            field : 'hUserPhoneNr',
+            title : '手机号码',
+            width : 300,
+            align : 'left'
+        }, {
+            field : 'sUserNameStr',
+            title : '姓名',
+            width : 150,
+            align : 'left'
+        }, {
+            field : 'sUserEmailStr',
+            title : 'Email',
+            width : 150,
+            align : 'left'
+        }, {
+            field : 'sUserGenderCd',
+            title : '性别编码',
             width : 100,
-            align : 'left'
+            align : 'left',
+            hidden:true
         }, {
-            field : 'sEventContentUrl',
-            title : '跳转URL',
-            width : 330,
-            align : 'left'
-        }, {
-            field : 'rEventCategoryDesc',
-            title : '类别',
-            width : 100,
-            align : 'left'
-        }, {
-            field : 'rEventTypeDesc',
-            title : '类型',
-            width : 100,
-            align : 'left'
-        }, {
-            field : 'sEventCategoryCd',
-            title : '类别编码',
+            field : 'sUserGenderDesc',
+            title : '性别',
             width : 100,
             align : 'left',
             hidden : true
         }, {
-            field : 'sEventTypeCd',
-            title : '类型编码',
-            width : 100,
+            field : 'sUserProfileUrl',
+            title : '头像URL',
+            width : 200,
             align : 'left',
             hidden : true
         }, {
-            field : 'sEventActiveInd',
+            field : 'sUserActiveInd',
             title : '是否激活',
             width : 100,
             align : 'left'
         }, {
-            field : 'createTs',
+            field : 'createTsString',
             title : '创建时间',
             width : 150,
             align : 'left'
         }, {
-            field : 'updateTs',
+            field : 'updateTsString',
             title : '更新时间',
             width : 150,
             align : 'left'
@@ -91,25 +92,21 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout', func
             // });
         },
         onSelect : function(value, row, index) {
-            var eventId = row.hEventId;
-            var eventTitleUrl = row.sEventTitleUrl;
-            var eventContentUrl = row.sEventContentUrl;
-            var eventCategory = row.sEventCategoryCd;
-            var eventType = row.sEventTypeCd;
-            var eventSubContentString = row.eventSubContentString;
-            var eventBannerPosition=row.sEventBannerPositionCd;
-            var eventRecomPosition=row.sEventRecomPositionCd;
-            
-            console.info(eventSubContent);
+            var hUserId = row.hUserId;
+            var hUserPhoneNr = row.hUserPhoneNr;
+            var sUserNameStr = row.sUserNameStr;
+            var sUserEmailStr = row.sUserEmailStr;
+            var sUserGenderCd = row.sUserGenderCd;
+            var sUserProfileUrl = row.sUserProfileUrl;
+            var sUserActiveInd=row.sUserActiveInd;
 
-            $('#edit_event_id').val(eventId);
-            $('#edit_event_title_url').val(eventTitleUrl);
-            $('#edit_event_content_url').val(eventContentUrl);
-            $('#edit_event_category').val(eventCategory);
-            $('#edit_event_type').val(eventType);
-            $('#edit_event_sub_content').val(eventSubContentString);
-            $('#edit_event_banner_position').val(eventBannerPosition);
-            $('#edit_event_recomend_position').val(eventRecomPosition);
+            $('#hUserId').val(hUserId);
+            $('#hUserPhoneNr').val(hUserPhoneNr);
+            $('#sUserNameStr').val(sUserNameStr);
+            $('#sUserEmailStr').val(sUserEmailStr);
+            $('#sUserGenderCd').val(sUserGenderCd);
+            $('#sUserProfileUrl').val(sUserProfileUrl);
+            $('#sUserActiveInd').val(sUserActiveInd);
 
             $("#edit_event_dialog").modal('show');
         }
@@ -226,7 +223,7 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout', func
             "sEventTypeCd" : editEventType,
             "sEventBannerPositionCd" : editEventBannerPosition,
             "sEventRecomPositionCd" : editEventRecommendPosition,
-            "sEventSubContent":editEventSubContent
+            "sEventSubContentString":editEventSubContent
         };
 
         ajaxRequest(datas, "editTEventSummary.do");
