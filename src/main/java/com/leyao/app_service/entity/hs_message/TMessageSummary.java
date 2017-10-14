@@ -2,18 +2,27 @@ package com.leyao.app_service.entity.hs_message;
 
 import java.util.Date;
 
+import com.leyao.app_service.entity.hs_message.enums.RMessageCategoryEnum;
+import com.leyao.app_service.util.DateUtil;
+
 public class TMessageSummary {
     private Long hMessageId;
 
     private Integer sMessageActiveInd;
 
     private Integer sMessageCategoryCd;
+    
+    private String sMessageCategoryDesc;
 
     private String sMessageContentStr;
 
     private Date createTs;
+    
+    private String createTsString;
 
     private Date updateTs;
+    
+    private String updateTsString;
 
     private Long hUserPhoneNr;
 
@@ -71,5 +80,29 @@ public class TMessageSummary {
 
     public void sethUserPhoneNr(Long hUserPhoneNr) {
         this.hUserPhoneNr = hUserPhoneNr;
+    }
+
+    public String getsMessageCategoryDesc() {
+        return RMessageCategoryEnum.getValue(sMessageCategoryCd);
+    }
+
+    public void setsMessageCategoryDesc(String sMessageCategoryDesc) {
+        this.sMessageCategoryDesc = sMessageCategoryDesc;
+    }
+
+    public String getCreateTsString() {
+        return DateUtil.DateToString(createTs);
+    }
+
+    public void setCreateTsString(String createTsString) {
+        this.createTsString = createTsString;
+    }
+
+    public String getUpdateTsString() {
+        return DateUtil.DateToString(updateTs);
+    }
+
+    public void setUpdateTsString(String updateTsString) {
+        this.updateTsString = updateTsString;
     }
 }

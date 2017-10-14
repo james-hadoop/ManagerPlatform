@@ -107,6 +107,11 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             var sMessageActiveInd = row.sMessageActiveInd;
             var sMessageCategoryCd = row.sMessageCategoryCd;
             var sMessageContentStr = row.sMessageContentStr;
+            
+            console.info('hMessageId=' + hMessageId);
+            console.info('sMessageCategoryCd=' + sMessageCategoryCd);
+            console.info('sMessageContentStr=' + sMessageContentStr);
+            console.info('sMessageActiveInd=' + sMessageActiveInd);
 
             datas = {
                 "hMessageId" : hMessageId,
