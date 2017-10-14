@@ -25,7 +25,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         }, {
             field : 'hEventId',
             title : 'id',
-            width : 100,
+            width : 50,
             align : 'left',
             sortable : false,
             remoteSort : false
@@ -42,7 +42,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         }, {
             field : 'rEventCategoryDesc',
             title : '类别',
-            width : 100,
+            width : 75,
             align : 'left'
         }, {
             field : 'rEventTypeDesc',
@@ -64,7 +64,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         }, {
             field : 'sEventActiveInd',
             title : '是否激活',
-            width : 100,
+            width : 75,
             align : 'left'
         }, {
             field : 'createTsString',

@@ -45,7 +45,7 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             width : 400,
             align : 'left'
         },{
-            field : 'sUserActiveInd',
+            field : 'sMessageActiveInd',
             title : '是否激活',
             width : 100,
             align : 'left'
@@ -87,12 +87,12 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             $('#sMessageCategoryDesc').val(sMessageCategoryDesc);
             $('#sMessageContentStr').val(sMessageContentStr);
 
-            $("#edit_event_dialog").modal('show');
+            $("#edit_message_dialog").modal('show');
         }
     });
 
-    $("#add_event").bind('click', function() {
-        $("#add_event_dialog").modal('show');
+    $("#add_message").bind('click', function() {
+        $("#add_message_dialog").modal('show');
     });
 
     $("#delete_event").bind('click', function() {
@@ -103,115 +103,65 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             alert('请选择一个Job!');
             return;
         } else {
-            var eventId = row.hEventId;
-            var eventTitleUrl = row.sEventTitleUrl;
-            var eventContentUrl = row.sEventContentUrl;
-            var eventCategory = row.rEventCategoryCd;
-            var eventType = row.sEventTypeCd;
-            var eventBannerPosition = row.sEventBannerPositionCd;
-            var eventRecommendPosition = row.sEventRecomPositionCd;
+            var hMessageId = row.hMessageId;
+            var sMessageActiveInd = row.sMessageActiveInd;
+            var sMessageCategoryCd = row.sMessageCategoryCd;
+            var sMessageContentStr = row.sMessageContentStr;
 
             datas = {
-                "hEventId" : eventId,
-                "sEventCategoryCd" : eventCategory,
-                "sEventTypeCd" : eventType,
-                "sEventTitleUrl" : eventTitleUrl,
-                "sEventContentUrl" : eventContentUrl,
-                "sEventBannerPositionCd" : eventBannerPosition,
-                "sEventRecomPositionCd" : eventRecommendPosition
+                "hMessageId" : hMessageId,
+                "sMessageActiveInd" : sMessageActiveInd,
+                "sMessageCategoryCd" : sMessageCategoryCd,
+                "sMessageContentStr" : sMessageContentStr
             };
 
-            ajaxRequest(datas, "deleteTEventSummary.do");
+            ajaxRequest(datas, "delete.do");
         }
     });
 
-    $("#add_event_dialog_save").bind('click', function() {
-        var addEventName = $("#add_event_name").val();
-        var addEventCategory = $("#add_event_category").val();
-        var addEventType = $("#add_event_type").val();
-        var addEventTitleUrl = $("#add_event_title_url").val();
-        var addEventContentUrl = $("#add_event_content_url").val();
-        var addEventIsActive = $('input:radio[name="add_event_is_active"]:checked').val();
-        var addEventIsBanner = $('input:radio[name="add_event_is_banner"]:checked').val();
-        var addEventBannerPosition = $("#add_event_banner_position").val();
-        var addEventIsRecommend = $('input:radio[name="add_event_is_recommend"]:checked').val();
-        var addEventRecommendPosition = $("#add_event_recommend_position").val();
-        var addEventSubContent=$("#add_event_sub_content").val();
-        //var sEventSubContent
+    $("#add_message_dialog_save").bind('click', function() {
+        var sMessageCategoryCd = $("#add_sMessageCategoryCd").val();
+        var sMessageContentStr = $("#add_sMessageContentStr").val();
+        var sMessageActiveInd = $('input:radio[name="add_sMessageActiveIndRadio"]:checked').val();
 
-        console.info('addEventName=' + addEventName);
-        console.info('addEventCategory=' + addEventCategory);
-        console.info('addEventType=' + addEventType);
-        console.info('addEventTitleUrl=' + addEventTitleUrl);
-        console.info('addEventContentUrl=' + addEventContentUrl);
-        console.info('addEventIsActive=' + addEventIsActive);
-        console.info('addEventIsBanner=' + addEventIsBanner);
-        console.info('addEventBannerPosition=' + addEventBannerPosition);
-        console.info('addEventIsRecommend=' + addEventIsRecommend);
-        console.info('addEventRecommendPosition=' + addEventRecommendPosition);
-        console.info('addEventSubContent=' + addEventSubContent);
+        console.info('sMessageCategoryCd=' + sMessageCategoryCd);
+        console.info('sMessageContentStr=' + sMessageContentStr);
+        console.info('sMessageActiveInd=' + sMessageActiveInd);
 
-        var datas = {
-            "sEventCategoryCd" : addEventCategory,
-            "sEventTypeCd" : addEventType,
-            "sEventTitleUrl" : addEventTitleUrl,
-            "sEventContentUrl" : addEventContentUrl,
-            "sEventActiveInd" : addEventIsActive,
-            "sEventTypeCd" : addEventType,
-            "sEventBannerPositionCd" : addEventBannerPosition,
-            "sEventRecomPositionCd" : addEventRecommendPosition,
-            "sEventSubContent":addEventSubContent
-        };
+        datas = {
+                "sMessageActiveInd" : sMessageActiveInd,
+                "sMessageCategoryCd" : sMessageCategoryCd,
+                "sMessageContentStr" : sMessageContentStr
+            };
 
-        ajaxRequest(datas, "addTEventSummary.do");
+        ajaxRequest(datas, "add.do");
     });
 
-    $("#edit_event_dialog_save").bind('click', function() {
-        var editEventId = $("#edit_event_id").val();
-        var editEventName = $("#edit_event_name").val();
-        var editEventCategory = $("#edit_event_category").val();
-        var editEventType = $("#edit_event_type").val();
-        var editEventTitleUrl = $("#edit_event_title_url").val();
-        var editEventContentUrl = $("#edit_event_content_url").val();
-        var editEventIsActive = $('input:radio[name="edit_event_is_active"]:checked').val();
-        var editEventIsBanner = $('input:radio[name="edit_event_is_banner"]:checked').val();
-        var editEventBannerPosition = $("#edit_event_banner_position").val();
-        var editEventIsRecommend = $('input:radio[name="edit_event_is_recommend"]:checked').val();
-        var editEventRecommendPosition = $("#edit_event_recommend_position").val();
-        var editEventSubContent=$("#edit_event_sub_content").val();
+    $("#edit_message_dialog_save").bind('click', function() {
+        var hMessageId=$("#hMessageId").val();
+        var sMessageCategoryCd = $("#sMessageCategoryCd").val();
+        var sMessageContentStr = $("#sMessageContentStr").val();
+        var sMessageActiveInd = $('input:radio[name="sMessageActiveIndRadio"]:checked').val();
 
-//        console.info('editEventId=' + editEventId);
-//        console.info('editEventName=' + editEventName);
-//        console.info('editEventCategory=' + editEventCategory);
-//        console.info('editEventType=' + editEventType);
-//        console.info('editEventTitleUrl=' + editEventTitleUrl);
-//        console.info('editEventContentUrl=' + editEventContentUrl);
-//        console.info('editEventIsActive=' + editEventIsActive);
-//        console.info('editEventIsBanner=' + editEventIsBanner);
-//        console.info('editEventBannerPosition=' + editEventBannerPosition);
-//        console.info('editEventIsRecommend=' + editEventIsRecommend);
-//        console.info('editEventRecommendPosition=' + editEventRecommendPosition);
+        console.info('hMessageId=' + hMessageId);
+        console.info('sMessageCategoryCd=' + sMessageCategoryCd);
+        console.info('sMessageContentStr=' + sMessageContentStr);
+        console.info('sMessageActiveInd=' + sMessageActiveInd);
 
-        var datas = {
-            "hEventId" : editEventId,
-            "sEventCategoryCd" : editEventCategory,
-            "sEventTypeCd" : editEventType,
-            "sEventTitleUrl" : editEventTitleUrl,
-            "sEventContentUrl" : editEventContentUrl,
-            "sEventActiveInd" : editEventIsActive,
-            "sEventTypeCd" : editEventType,
-            "sEventBannerPositionCd" : editEventBannerPosition,
-            "sEventRecomPositionCd" : editEventRecommendPosition,
-            "sEventSubContentString":editEventSubContent
-        };
+        datas = {
+                "hMessageId" : hMessageId,
+                "sMessageActiveInd" : sMessageActiveInd,
+                "sMessageCategoryCd" : sMessageCategoryCd,
+                "sMessageContentStr" : sMessageContentStr
+            };
 
-        ajaxRequest(datas, "editTEventSummary.do");
+        ajaxRequest(datas, "edit.do");
     });
 
     ajaxRequest = function(datas, oper) {
         $.ajax({
             type : "POST",
-            url : "v1/service/event/" + oper,
+            url : "v1/service/message/" + oper,
             data : JSON.stringify(datas),
             contentType : "application/json",
             dataType : "json",

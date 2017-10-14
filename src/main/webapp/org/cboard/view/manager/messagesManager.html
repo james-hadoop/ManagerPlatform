@@ -3,7 +3,7 @@
     placeholder="输入名称 / URL / 类型" style="width: 400px;"> <span
     class=""><button id="search" type="button"
       class="btn btn-primary" style="width: 80px;">搜索</button></span> <span
-    class="input-group-btn"><button id="add_event" type="button"
+    class="input-group-btn"><button id="add_message" type="button"
       class="btn btn-default restful_monitor_page-toolbar"
       style="width: 80px;">新增</button></span> &nbsp; <span
     class="input-group-btn"><button id="delete_event"
@@ -22,8 +22,8 @@
   </table>
 </div>
 
-<!-- add_event_dialog -->
-<div id="add_event_dialog" class="modal fade" tabindex="-1"
+<!-- add_message_dialog -->
+<div id="add_message_dialog" class="modal fade" tabindex="-1"
   role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -36,14 +36,6 @@
       </div>
       <div class="modal-body">
       <form class="form-horizontal">
-          <div class="form-group">
-            <label class=" col-sm-2  control-label"
-              style="width: 120px;">ID</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="add_hMessageId" />
-            </div>
-          </div>
-
           <div class="form-group">
             <label class=" col-sm-2  control-label"
               style="width: 120px;">类别</label>
@@ -64,14 +56,14 @@
           </div>
 
           <div class="form-group">
-            <label for="sMessageActiveIndRadio"
+            <label for="add_sMessageActiveIndRadio"
               class="col-sm-2 control-label" style="width: 120px;">是否激活</label>
             <div class="col-sm-10">
               <label class="checkbox-inline"> <input
-                type="radio" name="sMessageActiveIndRadio" id="add_sMessageActiveInd"
+                type="radio" name="add_sMessageActiveIndRadio" id="add_sMessageActiveInd"
                 value="0" checked> 是
               </label> <label class="checkbox-inline"> <input
-                type="radio" name="sMessageActiveIndRadio" id="add_sMessageActiveInd"
+                type="radio" name="add_sMessageActiveIndRadio" id="add_sMessageActiveInd"
                 value="1"> 否
               </label>
             </div>
@@ -81,7 +73,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default"
             data-dismiss="modal">关闭</button>
-          <button id="add_event_dialog_save" type="button"
+          <button id="add_message_dialog_save" type="button"
             class="btn btn-primary">保存</button>
         </div>
 
@@ -91,8 +83,8 @@
 </div>
 
 
-<!-- edit_event_dialog -->
-<div id="edit_event_dialog" class="modal fade" tabindex="-1"
+<!-- edit_message_dialog -->
+<div id="edit_message_dialog" class="modal fade" tabindex="-1"
   role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -137,7 +129,7 @@
               class="col-sm-2 control-label" style="width: 120px;">是否激活</label>
             <div class="col-sm-10">
               <label class="checkbox-inline"> <input
-                type="radio" name="sMessageActiveIndRadio" id="edit_event"
+                type="radio" name="sMessageActiveIndRadio" id="edit_message"
                 value="0" checked> 是
               </label> <label class="checkbox-inline"> <input
                 type="radio" name="sMessageActiveIndRadio" id="sMessageActiveInd"
@@ -150,7 +142,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default"
             data-dismiss="modal">关闭</button>
-          <button id="edit_event_dialog_save" type="button"
+          <button id="edit_message_dialog_save" type="button"
             class="btn btn-primary">保存</button>
         </div>
 
