@@ -122,8 +122,6 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
 
     $("#delete_event").bind('click', function() {
         var rows = $('#event_table').datagrid('getChecked');
-        var row = rows[0];
-
         if (0 == rows.length) {
             BootstrapDialog.show({
                 title : '警告',
@@ -131,6 +129,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             });
             return;
         } else {
+            var row = rows[0];
             var eventId = row.hEventId;
             var eventTitleUrl = row.sEventTitleUrl;
             var eventContentUrl = row.sEventContentUrl;

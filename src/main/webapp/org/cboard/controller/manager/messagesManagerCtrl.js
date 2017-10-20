@@ -97,7 +97,6 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
 
     $("#delete_message").bind('click', function() {
         var rows = $('#message_table').datagrid('getChecked');
-        var row = rows[0];
 
         if (0 == rows.length) {
             BootstrapDialog.show({
@@ -106,6 +105,8 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             });
             return;
         } else {
+            var row = rows[0];
+            
             var hMessageId = row.hMessageId;
             var sMessageActiveInd = row.sMessageActiveInd;
             var sMessageCategoryCd = row.sMessageCategoryCd;

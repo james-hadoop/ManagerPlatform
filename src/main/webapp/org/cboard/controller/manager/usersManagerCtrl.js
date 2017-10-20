@@ -119,8 +119,6 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout',
 
             $("#delete_user").bind('click', function() {
                 var rows = $('#user_table').datagrid('getChecked');
-                var row = rows[0];
-
                 if (0 == rows.length) {
                     BootstrapDialog.show({
                         title : '警告',
@@ -128,6 +126,7 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout',
                     });
                     return;
                 } else {
+                    var row = rows[0];
                     var hUserId = row.hUserId;
                     var hUserPhoneNr = row.hUserPhoneNr;
                     var sUserNameStr = row.sUserNameStr;
