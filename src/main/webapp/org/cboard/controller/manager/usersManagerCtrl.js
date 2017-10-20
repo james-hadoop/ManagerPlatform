@@ -1,6 +1,6 @@
 JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout',
         function($scope, Upload, $timeout) {
-            $("#event_table").datagrid({
+            $("#user_table").datagrid({
                 iconCls : 'icon-ok',
                 width : '100%',
                 height : 800,
@@ -117,12 +117,15 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout',
                 $("#add_user_dialog").modal('show');
             });
 
-            $("#delete_event").bind('click', function() {
-                var rows = $('#event_table').datagrid('getChecked');
+            $("#delete_user").bind('click', function() {
+                var rows = $('#user_table').datagrid('getChecked');
                 var row = rows[0];
 
                 if (0 == rows.length) {
-                    alert('请选择一条记录!');
+                    BootstrapDialog.show({
+                        title : '警告',
+                        message : '请选择一条记录!'
+                    });
                     return;
                 } else {
                     var hUserId = row.hUserId;

@@ -125,7 +125,10 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         var row = rows[0];
 
         if (0 == rows.length) {
-            alert('请选择一个Job!');
+            BootstrapDialog.show({
+                title : '警告',
+                message : '请选择一条记录!'
+            });
             return;
         } else {
             var eventId = row.hEventId;

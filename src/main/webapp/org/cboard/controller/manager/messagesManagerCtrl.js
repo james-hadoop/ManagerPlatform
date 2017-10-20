@@ -1,5 +1,5 @@
 JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
-    $("#event_table").datagrid({
+    $("#message_table").datagrid({
         iconCls : 'icon-ok',
         width : '100%',
         height : 800,
@@ -42,7 +42,7 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
         }, {
             field : 'sMessageContentStr',
             title : '消息内容',
-            width : 400,
+            width : 495,
             align : 'left'
         },{
             field : 'sMessageActiveInd',
@@ -95,12 +95,15 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
         $("#add_message_dialog").modal('show');
     });
 
-    $("#delete_event").bind('click', function() {
-        var rows = $('#event_table').datagrid('getChecked');
+    $("#delete_message").bind('click', function() {
+        var rows = $('#message_table').datagrid('getChecked');
         var row = rows[0];
 
         if (0 == rows.length) {
-            alert('请选择一个Job!');
+            BootstrapDialog.show({
+                title : '警告',
+                message : '请选择一条记录!'
+            });
             return;
         } else {
             var hMessageId = row.hMessageId;
@@ -121,6 +124,115 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             };
 
             ajaxRequest(datas, "delete.do");
+        }
+    });
+    
+    $("#associate_message").bind('click', function() {
+        var rows = $('#message_table').datagrid('getChecked');
+        var row = rows[0];
+
+        if (0 == rows.length) {
+            BootstrapDialog.show({
+                title : '警告',
+                message : '请选择一条记录!'
+            });
+            return;
+        } else {
+            var hMessageId = row.hMessageId;
+            
+            $("#associate_user_table").datagrid({
+                iconCls : 'icon-ok',
+                width : '100%',
+                height : 800,
+                rownumbers : false,
+                animate : true,
+                collapsible : true,
+                fitcolumns : true,
+                singleSelect : true,
+                selectOnCheck : false,
+                checkOnSelect : false,
+                pagination : true,
+                striped : true,
+                pageSize : 20,
+                pageList : [ 20, 40, 60, 100, 1000 ],
+                toolbar : "#toolbar",
+                url : "v1/service/user/get.do",
+                idField : 'hUserId',
+                showFooter : false,
+                columns : [ [ {
+                    field : 'ck',
+                    checkbox : true
+                }, {
+                    field : 'hUserId',
+                    title : 'id',
+                    width : 50,
+                    align : 'left',
+                    sortable : false,
+                    remoteSort : false
+                }, {
+                    field : 'hUserPhoneNr',
+                    title : '手机号码',
+                    width : 150,
+                    align : 'left'
+                }, {
+                    field : 'sUserNameStr',
+                    title : '姓名',
+                    width : 100,
+                    align : 'left'
+                }, {
+                    field : 'sUserEmailStr',
+                    title : 'Email',
+                    width : 250,
+                    align : 'left'
+                }, {
+                    field : 'sUserGenderCd',
+                    title : '性别编码',
+                    width : 100,
+                    align : 'left',
+                    hidden : true
+                }, {
+                    field : 'sUserGenderDesc',
+                    title : '性别',
+                    width : 50,
+                    align : 'left'
+                }, {
+                    field : 'sUserProfileUrl',
+                    title : '头像URL',
+                    width : 250,
+                    align : 'left'
+                }, {
+                    field : 'sUserActiveInd',
+                    title : '是否激活',
+                    width : 75,
+                    align : 'left'
+                }, {
+                    field : 'createTsString',
+                    title : '创建时间',
+                    width : 100,
+                    align : 'left'
+                }, {
+                    field : 'updateTsString',
+                    title : '更新时间',
+                    width : 100,
+                    align : 'left'
+                } ] ],
+                onLoadSuccess : function(data) {
+                    if ($("#job_manager_page-isButtonShow").val() == 'no') {
+                        $(".job_manager_page-toolbar").css('display', 'none');
+                    } else {
+                        $(".custom-margin-left").css('margin-left', '20px');
+                    }
+                },
+                onLoadError : function() {
+                    // alert('结果异常!');
+                    // BootstrapDialog.show({
+                    // title : '错误',
+                    // message : '结果异常！'
+                    // });
+                }});
+
+
+            $("#associate_message_dialog").modal('show');
         }
     });
 

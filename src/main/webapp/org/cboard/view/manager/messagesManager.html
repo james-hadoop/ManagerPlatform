@@ -1,14 +1,12 @@
 <div id="section_search" class="input-group" style="width: 100%;">
-  <input id="search_condition" type="text" class="form-control"
-    placeholder="输入名称 / URL / 类型" style="width: 400px;"> <span
-    class=""><button id="search" type="button"
-      class="btn btn-primary" style="width: 80px;">搜索</button></span> <span
+  <input id="search_condition" type="text" class="form-control" placeholder="输入名称 / URL / 类型" style="width: 400px;">
+  <span class=""><button id="search" type="button" class="btn btn-primary" style="width: 80px;">搜索</button></span> <span
     class="input-group-btn"><button id="add_message" type="button"
-      class="btn btn-default restful_monitor_page-toolbar"
-      style="width: 80px;">新增</button></span> &nbsp; <span
-    class="input-group-btn"><button id="delete_event"
-      type="button" class="btn btn-default restful_monitor_page-toolbar"
-      style="width: 80px;">删除</button></span>
+      class="btn btn-default restful_monitor_page-toolbar" style="width: 80px;">新增</button></span> &nbsp; <span
+    class="input-group-btn"><button id="delete_message" type="button"
+      class="btn btn-default restful_monitor_page-toolbar" style="width: 80px;">删除</button></span> &nbsp; <span
+    class="input-group-btn"><button id="associate_message" type="button"
+      class="btn btn-default restful_monitor_page-toolbar" style="width: 80px;">关联</button></span>
 </div>
 <hr />
 
@@ -18,27 +16,24 @@
 <br />
 
 <div id="section_table">
-  <table id="event_table" class="table ">
+  <table id="message_table" class="table ">
   </table>
 </div>
 
 <!-- add_message_dialog -->
-<div id="add_message_dialog" class="modal fade" tabindex="-1"
-  role="dialog" aria-labelledby="myModalLabel">
+<div id="add_message_dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"
-          aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="create_job_data_sync_dialog_title">创建</h4>
       </div>
       <div class="modal-body">
-      <form class="form-horizontal">
+        <form class="form-horizontal">
           <div class="form-group">
-            <label class=" col-sm-2  control-label"
-              style="width: 120px;">类别</label>
+            <label class=" col-sm-2  control-label" style="width: 120px;">类别</label>
             <div class="col-sm-4">
               <select class="form-control" id="add_sMessageCategoryCd">
                 <option value="0" selected="selected">-- 选择 --</option>
@@ -46,35 +41,29 @@
               </select>
             </div>
           </div>
-          
+
           <div class="form-group">
-            <label class=" col-sm-2  control-label"
-              style="width: 120px;">内容</label>
+            <label class=" col-sm-2  control-label" style="width: 120px;">内容</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="add_sMessageContentStr" />
             </div>
           </div>
 
           <div class="form-group">
-            <label for="add_sMessageActiveIndRadio"
-              class="col-sm-2 control-label" style="width: 120px;">是否激活</label>
+            <label for="add_sMessageActiveIndRadio" class="col-sm-2 control-label" style="width: 120px;">是否激活</label>
             <div class="col-sm-10">
-              <label class="checkbox-inline"> <input
-                type="radio" name="add_sMessageActiveIndRadio" id="add_sMessageActiveInd"
-                value="0" checked> 是
-              </label> <label class="checkbox-inline"> <input
-                type="radio" name="add_sMessageActiveIndRadio" id="add_sMessageActiveInd"
-                value="1"> 否
+              <label class="checkbox-inline"> <input type="radio" name="add_sMessageActiveIndRadio"
+                id="add_sMessageActiveInd" value="0" checked> 是
+              </label> <label class="checkbox-inline"> <input type="radio" name="add_sMessageActiveIndRadio"
+                id="add_sMessageActiveInd" value="1"> 否
               </label>
             </div>
           </div>
 
         </form>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default"
-            data-dismiss="modal">关闭</button>
-          <button id="add_message_dialog_save" type="button"
-            class="btn btn-primary">保存</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button id="add_message_dialog_save" type="button" class="btn btn-primary">保存</button>
         </div>
 
       </div>
@@ -84,13 +73,11 @@
 
 
 <!-- edit_message_dialog -->
-<div id="edit_message_dialog" class="modal fade" tabindex="-1"
-  role="dialog" aria-labelledby="myModalLabel">
+<div id="edit_message_dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"
-          aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <h4 class="modal-title" id="create_job_data_sync_dialog_title">编辑</h4>
@@ -98,16 +85,14 @@
       <div class="modal-body">
         <form class="form-horizontal">
           <div class="form-group">
-            <label class=" col-sm-2  control-label"
-              style="width: 120px;">ID</label>
+            <label class=" col-sm-2  control-label" style="width: 120px;">ID</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="hMessageId" />
             </div>
           </div>
 
           <div class="form-group">
-            <label class=" col-sm-2  control-label"
-              style="width: 120px;">类别</label>
+            <label class=" col-sm-2  control-label" style="width: 120px;">类别</label>
             <div class="col-sm-4">
               <select class="form-control" id="sMessageCategoryCd">
                 <option value="0" selected="selected">-- 选择 --</option>
@@ -115,38 +100,67 @@
               </select>
             </div>
           </div>
-          
+
           <div class="form-group">
-            <label class=" col-sm-2  control-label"
-              style="width: 120px;">内容</label>
+            <label class=" col-sm-2  control-label" style="width: 120px;">内容</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="sMessageContentStr" />
             </div>
           </div>
 
           <div class="form-group">
-            <label for="sMessageActiveIndRadio"
-              class="col-sm-2 control-label" style="width: 120px;">是否激活</label>
+            <label for="sMessageActiveIndRadio" class="col-sm-2 control-label" style="width: 120px;">是否激活</label>
             <div class="col-sm-10">
-              <label class="checkbox-inline"> <input
-                type="radio" name="sMessageActiveIndRadio" id="edit_message"
-                value="0" checked> 是
-              </label> <label class="checkbox-inline"> <input
-                type="radio" name="sMessageActiveIndRadio" id="sMessageActiveInd"
-                value="1"> 否
+              <label class="checkbox-inline"> <input type="radio" name="sMessageActiveIndRadio"
+                id="edit_message" value="0" checked> 是
+              </label> <label class="checkbox-inline"> <input type="radio" name="sMessageActiveIndRadio"
+                id="sMessageActiveInd" value="1"> 否
               </label>
             </div>
           </div>
 
         </form>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default"
-            data-dismiss="modal">关闭</button>
-          <button id="edit_message_dialog_save" type="button"
-            class="btn btn-primary">保存</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          <button id="edit_message_dialog_save" type="button" class="btn btn-primary">保存</button>
         </div>
 
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- associate_message_dialog -->
+<div id="associate_message_dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="create_job_data_sync_dialog_title">关联</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class=" col-sm-2  control-label" style="width: 120px;">ID</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="associate_hMessageId" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <table id="associate_user_table" class="table ">
+            </table>
+          </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button id="associate_message_dialog_save" type="button" class="btn btn-primary">保存</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 </div>
