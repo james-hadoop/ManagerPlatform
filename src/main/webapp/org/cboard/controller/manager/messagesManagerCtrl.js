@@ -128,14 +128,9 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
         }
     });
     
-    $('#associate_message_dialog_save').bind('click', function() {
-       alert('associated!'); 
-    });
-    
-    $("#associate_message").bind('click', function() {
-        var rows = $('#message_table').datagrid('getChecked');
-        var row = rows[0];
-
+    $('#associate_message_dialog_save').bind('click', function() {        
+        var rows = $("#associate_user_table").bootstrapTable('getSelections');
+        
         if (0 == rows.length) {
             BootstrapDialog.show({
                 title : '警告',
@@ -143,7 +138,30 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             });
             return;
         } else {
-            //var hMessageId = row.hMessageId;
+            var rowUserIds = new Array();
+            for (var i = 0; i < rows.length; i++) {
+                rowUserIds[i] = rows[i].hUserId;
+            }
+            
+            console.info(rowUserIds);
+            var hMessageId=$('#associate_message_id').val();
+            console.info(hMessageId);
+        }
+    });
+    
+    $("#associate_message").bind('click', function() {
+        var rows = $('#message_table').datagrid('getChecked');
+        var row = rows[0];
+
+        if (1 != rows.length) {
+            BootstrapDialog.show({
+                title : '警告',
+                message : '请选择一条记录!'
+            });
+            return;
+        } else {
+            var hMessageId = row.hMessageId;
+            $('#associate_message_id').val(hMessageId);
             
             $("#associate_user_table").bootstrapTable('destroy');
             $("#associate_user_table").bootstrapTable({
