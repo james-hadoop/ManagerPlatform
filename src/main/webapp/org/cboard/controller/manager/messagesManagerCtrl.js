@@ -138,98 +138,69 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             });
             return;
         } else {
-            var hMessageId = row.hMessageId;
+            //var hMessageId = row.hMessageId;
             
-            $("#associate_user_table").datagrid({
+            $("#associate_user_table").bootstrapTable('destroy');
+            $("#associate_user_table").bootstrapTable({
+                title : '关联用户',
                 iconCls : 'icon-ok',
-                width : '100%',
-                height : 800,
+                width : 600,
+                method : 'post',
+                height : 300,
+                cache : false,
                 rownumbers : false,
-                animate : true,
-                collapsible : true,
-                fitcolumns : true,
-                singleSelect : true,
-                selectOnCheck : false,
-                checkOnSelect : false,
-                pagination : true,
+                animate : false,
+                collapsible : false,
+                fitcolumns : false,
+                singleSelect : false,
                 striped : true,
-                pageSize : 20,
-                pageList : [ 20, 40, 60, 100, 1000 ],
-                toolbar : "#toolbar",
-                url : "v1/service/user/get.do",
+                pagination : true,
+                pageNumber : 1,
+                pageSize : 10,
+                pageList : [ 10, 20, 50, 100, 1000 ],
+                url : 'v1/service/user/get.do',
                 idField : 'hUserId',
+                clickToSelect : false,
+                queryParams : function(params) {
+                    var temp = {
+                        rows : params.limit,
+                        page : params.offset
+                    };
+                    return temp;
+                },
                 showFooter : false,
+                sidePagination : "server",
                 columns : [ [ {
                     field : 'ck',
-                    checkbox : true
+                    width : 50,
+                    field : 'state',
+                    checkbox : true,
+                    //formatter : authorizationFunction.initStateFormatter
                 }, {
                     field : 'hUserId',
                     title : 'id',
                     width : 50,
                     align : 'left',
-                    sortable : false,
+                    sortable : true,
                     remoteSort : false
-                }, {
-                    field : 'hUserPhoneNr',
-                    title : '手机号码',
-                    width : 150,
-                    align : 'left'
                 }, {
                     field : 'sUserNameStr',
                     title : '姓名',
-                    width : 100,
+                    width : 300,
                     align : 'left'
                 }, {
-                    field : 'sUserEmailStr',
-                    title : 'Email',
-                    width : 250,
-                    align : 'left'
-                }, {
-                    field : 'sUserGenderCd',
-                    title : '性别编码',
-                    width : 100,
-                    align : 'left',
-                    hidden : true
-                }, {
-                    field : 'sUserGenderDesc',
-                    title : '性别',
-                    width : 50,
-                    align : 'left'
-                }, {
-                    field : 'sUserProfileUrl',
-                    title : '头像URL',
-                    width : 250,
-                    align : 'left'
-                }, {
-                    field : 'sUserActiveInd',
-                    title : '是否激活',
-                    width : 75,
-                    align : 'left'
-                }, {
-                    field : 'createTsString',
-                    title : '创建时间',
-                    width : 100,
-                    align : 'left'
-                }, {
-                    field : 'updateTsString',
-                    title : '更新时间',
-                    width : 100,
+                        field : 'hUserPhoneNr',
+                        title : '手机号码',
+                    width : 235,
                     align : 'left'
                 } ] ],
-                onLoadSuccess : function(data) {
-                    if ($("#job_manager_page-isButtonShow").val() == 'no') {
-                        $(".job_manager_page-toolbar").css('display', 'none');
-                    } else {
-                        $(".custom-margin-left").css('margin-left', '20px');
-                    }
-                },
                 onLoadError : function() {
-                    // alert('结果异常!');
-                    // BootstrapDialog.show({
-                    // title : '错误',
-                    // message : '结果异常！'
-                    // });
-                }});
+                    BootstrapDialog.show({
+                        title : 'Error',
+                        message : 'associate_user_table Error'
+                    });
+                }
+            });
 
 
             $("#associate_message_dialog").modal('show');
