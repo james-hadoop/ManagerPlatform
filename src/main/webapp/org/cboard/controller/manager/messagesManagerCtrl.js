@@ -127,6 +127,10 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
         }
     });
     
+    $('#associate_message_dialog_save').bind('click', function() {
+       alert('associated!'); 
+    });
+    
     $("#associate_message").bind('click', function() {
         var rows = $('#message_table').datagrid('getChecked');
         var row = rows[0];
