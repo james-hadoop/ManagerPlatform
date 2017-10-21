@@ -48,7 +48,7 @@ public class HsMessageController {
                 paramMap.put("sMessageContentStr", sMessageContentStr);
             }
 
-            result = HttpClientUtils.httpGet("http://localhost:8088/v1/service/message/getTMessageSummaryListByCondition",
+            result = HttpClientUtils.httpGet("http://localhost:8088/v1/service/message/getTMessageSummaryListByConditionGlobal",
                     paramMap);
         } catch (Exception e) {
             logger.error("/v1/service/message/get() called: sMessageActiveInd={}", e);
@@ -98,6 +98,21 @@ public class HsMessageController {
                     parameters);
         } catch (Exception e) {
             logger.error("/v1/service/message/delete() called: parameters={}", e);
+            return result;
+        }
+        return result;
+    }
+    
+    @RequestMapping(value = "/associate", method = RequestMethod.POST)
+    @ResponseBody
+    public String associate(@RequestBody String parameters) {
+        logger.info("/v1/service/message/associate() called: parameters={}", parameters);
+        String result = null;
+
+        try {
+            result = HttpClientUtils.httpPost("http://localhost:8088/v1/service/message/associateTMessageSummary", parameters);
+        } catch (Exception e) {
+            logger.error("/v1/service/message/associate() called: parameters={}", e);
             return result;
         }
         return result;

@@ -128,7 +128,7 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
         }
     });
     
-    $('#associate_message_dialog_save').bind('click', function() {        
+    $('#associate_message_dialog_save').bind('click', function() {
         var rows = $("#associate_user_table").bootstrapTable('getSelections');
         
         if (0 == rows.length) {
@@ -138,14 +138,21 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             });
             return;
         } else {
-            var rowUserIds = new Array();
+            var hUserIds = new Array();
             for (var i = 0; i < rows.length; i++) {
-                rowUserIds[i] = rows[i].hUserId;
+                hUserIds[i] = rows[i].hUserId;
             }
             
-            console.info(rowUserIds);
+            console.info(hUserIds);
             var hMessageId=$('#associate_message_id').val();
             console.info(hMessageId);
+            
+            datas = {
+                    "hMessageId" : hMessageId,
+                    "hUserIds" : hUserIds
+                };
+
+            ajaxRequest(datas, "associate.do");
         }
     });
     
@@ -224,7 +231,6 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
                     });
                 }
             });
-
 
             $("#associate_message_dialog").modal('show');
         }
