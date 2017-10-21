@@ -100,9 +100,9 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             var eventSubContentString = row.sEventSubContentString;
             var eventBannerPosition=row.sEventBannerPositionCd;
             var eventRecomPosition=row.sEventRecomPositionCd;
+            var eventIsActive=row.sEventActiveInd;alert(eventIsActive);
+            $('input:radio[name="edit_event_is_active"]').eq(eventIsActive).attr("checked","checked");
             
-            console.info(eventSubContentString);
-
             $('#edit_event_id').val(eventId);
             $('#edit_event_title_url').val(eventTitleUrl);
             $('#edit_event_content_url').val(eventContentUrl);
@@ -159,9 +159,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         var addEventTitleUrl = $("#add_event_title_url").val();
         var addEventContentUrl = $("#add_event_content_url").val();
         var addEventIsActive = $('input:radio[name="add_event_is_active"]:checked').val();
-        var addEventIsBanner = $('input:radio[name="add_event_is_banner"]:checked').val();
         var addEventBannerPosition = $("#add_event_banner_position").val();
-        var addEventIsRecommend = $('input:radio[name="add_event_is_recommend"]:checked').val();
         var addEventRecommendPosition = $("#add_event_recommend_position").val();
         var addEventSubContentString=$("#add_event_sub_content").val();
         //var sEventSubContent
@@ -201,9 +199,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         var editEventTitleUrl = $("#edit_event_title_url").val();
         var editEventContentUrl = $("#edit_event_content_url").val();
         var editEventIsActive = $('input:radio[name="edit_event_is_active"]:checked').val();
-        var editEventIsBanner = $('input:radio[name="edit_event_is_banner"]:checked').val();
         var editEventBannerPosition = $("#edit_event_banner_position").val();
-        var editEventIsRecommend = $('input:radio[name="edit_event_is_recommend"]:checked').val();
         var editEventRecommendPosition = $("#edit_event_recommend_position").val();
         var editEventSubContent=$("#edit_event_sub_content").val();
 

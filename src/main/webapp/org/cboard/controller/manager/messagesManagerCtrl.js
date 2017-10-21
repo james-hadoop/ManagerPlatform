@@ -86,6 +86,7 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
             $('#sMessageCategoryCd').val(sMessageCategoryCd);
             $('#sMessageCategoryDesc').val(sMessageCategoryDesc);
             $('#sMessageContentStr').val(sMessageContentStr);
+            $('input:radio[name="sMessageActiveIndRadio"]').eq(sMessageActiveInd).attr("checked","checked");
 
             $("#edit_message_dialog").modal('show');
         }
@@ -259,7 +260,7 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
         var sMessageCategoryCd = $("#sMessageCategoryCd").val();
         var sMessageContentStr = $("#sMessageContentStr").val();
         var sMessageActiveInd = $('input:radio[name="sMessageActiveIndRadio"]:checked').val();
-
+        
         console.info('hMessageId=' + hMessageId);
         console.info('sMessageCategoryCd=' + sMessageCategoryCd);
         console.info('sMessageContentStr=' + sMessageContentStr);

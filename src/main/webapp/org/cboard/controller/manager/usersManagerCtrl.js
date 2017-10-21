@@ -108,6 +108,7 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout',
                     $('#sUserGenderCd').val(sUserGenderCd);
                     $('#sUserProfileUrl').val(sUserProfileUrl);
                     $('#sUserActiveInd').val(sUserActiveInd);
+                    $('input:radio[name="sUserActiveIndRadio"]').eq(sUserActiveInd).attr("checked","checked");
 
                     $("#edit_user_dialog").modal('show');
                 }
