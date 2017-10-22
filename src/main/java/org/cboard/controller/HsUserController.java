@@ -23,7 +23,8 @@ public class HsUserController {
     public String get(@RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "rows", defaultValue = "10") Integer rows,
             @RequestParam(value = "sessionCode", defaultValue = "NoVerificaiton") String sessionCode,
-            @RequestParam(value = "hUserPhoneNr", required = false) Long hUserPhoneNr) {
+            @RequestParam(value = "hUserPhoneNr", required = false) Long hUserPhoneNr,
+            @RequestParam(value = "searchCondition", required = false) String searchCondition) {
         logger.info("/v1/service/user/get() called: hUserPhoneNr={}", hUserPhoneNr);
         String result = null;
 
@@ -38,6 +39,9 @@ public class HsUserController {
                 paramMap.put("sessionCode", sessionCode);
             }else {
                 paramMap.put("sessionCode", "NoVerificaiton");
+            }
+            if(null!=searchCondition) {
+                paramMap.put("searchCondition", searchCondition);
             }
 
             result = HttpClientUtils.httpGet("http://localhost:8088/v1/service/user/getTUserSummary", paramMap);

@@ -113,6 +113,18 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout',
                     $("#edit_user_dialog").modal('show');
                 }
             });
+            
+            $("#search_user").bind('click', function() {
+                var searchCondition=$("#search_user_condition").val();
+                
+                if(''==searchCondition){
+                    return;
+                }
+
+                $('#user_table').datagrid('load', {
+                    'searchCondition' : searchCondition
+                });
+            });
 
             $("#add_user").bind('click', function() {
                 $("#add_user_dialog").modal('show');
