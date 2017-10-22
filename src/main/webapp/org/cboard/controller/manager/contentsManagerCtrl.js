@@ -62,6 +62,18 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             align : 'left',
             hidden : true
         }, {
+            field : 'sEventBannerPositionCd',
+            title : 'Banner序号',
+            width : 100,
+            align : 'left',
+            hidden : true
+        }, {
+            field : 'sEventRecomPositionCd',
+            title : '推荐位序号',
+            width : 100,
+            align : 'left',
+            hidden : true
+        }, {
             field : 'sEventActiveInd',
             title : '是否激活',
             width : 75,
@@ -100,7 +112,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             var eventSubContentString = row.sEventSubContentString;
             var eventBannerPosition=row.sEventBannerPositionCd;
             var eventRecomPosition=row.sEventRecomPositionCd;
-            var eventIsActive=row.sEventActiveInd;alert(eventIsActive);
+            var eventIsActive=row.sEventActiveInd;
             $('input:radio[name="edit_event_is_active"]').eq(eventIsActive).attr("checked","checked");
             
             $('#edit_event_id').val(eventId);
@@ -110,7 +122,7 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             $('#edit_event_type').val(eventType);
             $('#edit_event_sub_content').val(eventSubContentString);
             $('#edit_event_banner_position').val(eventBannerPosition);
-            $('#edit_event_recomend_position').val(eventRecomPosition);
+            $('#edit_event_recommend_position').val(eventRecomPosition);
 
             $("#edit_event_dialog").modal('show');
         }
@@ -202,7 +214,8 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         var editEventBannerPosition = $("#edit_event_banner_position").val();
         var editEventRecommendPosition = $("#edit_event_recommend_position").val();
         var editEventSubContent=$("#edit_event_sub_content").val();
-
+        alert(editEventBannerPosition+" "+editEventRecommendPosition);
+        
 //        console.info('editEventId=' + editEventId);
 //        console.info('editEventName=' + editEventName);
 //        console.info('editEventCategory=' + editEventCategory);
