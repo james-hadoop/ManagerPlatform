@@ -39,12 +39,12 @@ public class HsMessageController {
                 paramMap.put("sessionCode", "NoVerificaiton");
             }
             if (null != sMessageActiveInd) {
-                paramMap.put("hUserPhoneNr", sMessageActiveInd);
+                paramMap.put("sMessageActiveInd", sMessageActiveInd);
             }
-            if (null != sMessageActiveInd) {
+            if (null != sMessageCategoryCd) {
                 paramMap.put("sMessageCategoryCd", sMessageCategoryCd);
             }
-            if (null != sMessageActiveInd) {
+            if (null != sMessageContentStr) {
                 paramMap.put("sMessageContentStr", sMessageContentStr);
             }
 

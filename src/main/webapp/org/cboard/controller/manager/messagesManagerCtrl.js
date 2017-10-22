@@ -157,6 +157,17 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
         }
     });
     
+    $("#search_message").bind('click', function() {
+        var sMessageContentStr=$("#search_message_condition").val();
+        if(''==sMessageContentStr){
+            return;
+        }
+
+        $('#message_table').datagrid('load', {
+            'sMessageContentStr' : sMessageContentStr
+        });
+    });
+    
     $("#associate_message").bind('click', function() {
         var rows = $('#message_table').datagrid('getChecked');
         var row = rows[0];

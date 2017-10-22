@@ -127,6 +127,19 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
             $("#edit_event_dialog").modal('show');
         }
     });
+    
+    $("#search_event").bind('click', function() {
+        var urlString=$("#search_event_condition").val();
+        alert(urlString);
+        
+        if(''==urlString){
+            return;
+        }
+
+        $('#event_table').datagrid('load', {
+            'urlString' : urlString
+        });
+    });
 
     $("#add_event").bind('click', function() {
         $("#add_event_dialog").modal('show');
@@ -214,7 +227,6 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
         var editEventBannerPosition = $("#edit_event_banner_position").val();
         var editEventRecommendPosition = $("#edit_event_recommend_position").val();
         var editEventSubContent=$("#edit_event_sub_content").val();
-        alert(editEventBannerPosition+" "+editEventRecommendPosition);
         
 //        console.info('editEventId=' + editEventId);
 //        console.info('editEventName=' + editEventName);

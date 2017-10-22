@@ -24,7 +24,8 @@ public class HsEventController {
                     @RequestParam(value = "sessionCode", required = false) String sessionCode, @RequestParam(value = "hUserPhoneNr", required = false) Long hUserPhoneNr,
                     @RequestParam(value = "sEventCategoryCd", required = false) Integer sEventCategoryCd, @RequestParam(value = "sEventTypeCd", required = false) Integer sEventTypeCd,
                     @RequestParam(value = "sUserEventLikeInd", required = false) Integer sUserEventLikeInd, @RequestParam(value = "sUserEventReadLogTxt", required = false) String sUserEventReadLogTxt,
-                    @RequestParam(value = "sEventSearchContentTxt", required = false) String sEventSearchContentTxt) {
+                    @RequestParam(value = "sEventSearchContentTxt", required = false) String sEventSearchContentTxt,
+                    @RequestParam(value = "urlString", required = false) String urlString) {
         logger.info("/v1/service/event/postTEventSummaryByCondition() called: sessionCode={}, page={}, rows={},hUserPhoneNr={},sEventCategoryCd={},sEventTypeCd={},sUserEventLikeInd={},sUserEventReadLogTxt={},sEventSearchContentTxt={}",
                         sessionCode, page, rows, hUserPhoneNr, sEventCategoryCd, sEventTypeCd, sUserEventLikeInd, sUserEventReadLogTxt, sEventSearchContentTxt);
         String result = null;
@@ -50,6 +51,9 @@ public class HsEventController {
             }
             if (null != sEventSearchContentTxt) {
                 paramMap.put("sEventSearchContentTxt", sEventSearchContentTxt);
+            }
+            if (null != urlString) {
+                paramMap.put("urlString", urlString);
             }
 
             result = HttpClientUtils.httpGet("http://localhost:8088/v1/service/event/getTEventSummaryByConditionGlobal?sessionCode=hello", paramMap);
