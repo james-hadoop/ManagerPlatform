@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.leyao.app_service.util.HttpClientUtils;
+import com.app_service.util.HttpClientUtils;
 
 @RestController
 @RequestMapping("/v1/service/user")

@@ -17,26 +17,6 @@ JamesBoard.controller('JamesBoard', function ($scope, $location, $http, $q, $fil
         });
     };
 
-    var getCategoryList = function () {
-        $http.get("dashboard/getCategoryList.do").success(function (response) {
-            $scope.categoryList = response;
-        });
-    };
-
-    var getBoardList = function () {
-        $http.get("dashboard/getBoardList.do").success(function (response) {
-            $scope.boardList = response;
-        });
-    };
-
-    $scope.$on("boardChange", function () {
-        getBoardList();
-    });
-
-    $scope.$on("categoryChange", function () {
-        getCategoryList();
-    });
-
     $scope.isShowMenu = function (code) {
         return !_.isUndefined(_.find($scope.menuList, function (menu) {            
             return menu.menuCode == code;
@@ -44,8 +24,6 @@ JamesBoard.controller('JamesBoard', function ($scope, $location, $http, $q, $fil
     };
 
     getMenuList();
-    getCategoryList();
-    getBoardList();
 
     $scope.changePwd = function () {
         $uibModal.open({

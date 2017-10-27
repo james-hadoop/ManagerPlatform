@@ -130,7 +130,6 @@ JamesBoard.controller('contentsManagerCtrl', [ '$scope', 'Upload', '$timeout', f
     
     $("#search_event").bind('click', function() {
         var urlString=$("#search_event_condition").val();
-        alert(urlString);
         
         if(''==urlString){
             return;
