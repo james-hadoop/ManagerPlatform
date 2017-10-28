@@ -14,7 +14,7 @@
 	<ul class="sidebar-menu">
 		<!-- MANAGEMENT -->
 		<li class="treeview" ui-sref-active="active"
-			ng-if="isShowMenu('manager')"><a> <i class="fa fa-trophy"></i>
+			ng-if="isShowMenu('manager')"><a> <i class="fa fa-cog"></i>
 				<span>{{'SIDEBAR.MANAGER'|translate}}</span> <span
 				class="pull-right-container"><i
 					class="fa fa-angle-left pull-right"></i> </span>
@@ -22,16 +22,16 @@
 			<ul class="treeview-menu">
 				<li ui-sref-active="active"
 					ng-if="isShowMenu('manager.usersManager')"><a
-					ui-sref="manager.usersManager"><i class="fa fa-table"></i>{{'SIDEBAR.USERS_MANAGER'|translate}}</a></li>
+					ui-sref="manager.usersManager"><i class="fa fa-user"></i>{{'SIDEBAR.USERS_MANAGER'|translate}}</a></li>
 				<li ui-sref-active="active"
 					ng-if="isShowMenu('manager.contentsManager')"><a
 					ui-sref="manager.contentsManager"><i class="fa fa-table"></i>{{'SIDEBAR.CONTENTS_MANAGER'|translate}}</a></li>
 				<li ui-sref-active="active"
 					ng-if="isShowMenu('manager.messagesManager')"><a
-					ui-sref="manager.messagesManager"><i class="fa fa-table"></i>{{'SIDEBAR.MESSAGES_MANAGER'|translate}}</a></li>
+					ui-sref="manager.messagesManager"><i class="fa fa-paper-plane"></i>{{'SIDEBAR.MESSAGES_MANAGER'|translate}}</a></li>
 				<li ui-sref-active="active"
 					ng-if="isShowMenu('manager.resourcesManager')"><a
-					ui-sref="manager.resourcesManager"><i class="fa fa-table"></i>{{'SIDEBAR.RESOURCES_MANAGER'|translate}}</a></li>
+					ui-sref="manager.resourcesManager"><i class="fa fa-trophy"></i>{{'SIDEBAR.RESOURCES_MANAGER'|translate}}</a></li>
 			</ul></li>
 	</ul>
 	<!-- /Module -->
