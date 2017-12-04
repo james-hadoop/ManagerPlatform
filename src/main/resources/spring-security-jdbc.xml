@@ -14,7 +14,7 @@
     <security:intercept-url pattern="/login**" access="permitAll" />
     <security:intercept-url pattern="/css/**" access="permitAll" />
     <security:intercept-url pattern="/v1/**" access="permitAll" />
-    <security:intercept-url pattern="/ManagerPlatform/**" access="permitAll" />
+    <security:intercept-url pattern="/static/**" access="!anonymous" />
     <security:intercept-url pattern="/**" access="!anonymous" />
     <security:form-login login-page="/login.do" username-parameter="username" password-parameter="password" default-target-url="/main.html" always-use-default-target="true" />
     <security:logout logout-url="/j_spring_cas_security_logout" />
