@@ -1,0 +1,3 @@
+﻿INSERT INTO cboard.dashboard_widget (widget_id,user_id,category_name,widget_name,data_json,create_time,update_time) VALUES 
+(2,'1','Default Category','student','{"config":{"chart_type":"line","filters":[],"groups":[],"keys":[{"col":"name","type":"eq","values":[]}],"selects":["id","city","birthday","age"],"valueAxis":"vertical","values":[{"cols":[{"aggregate_type":"sum","col":"score"}],"name":"","series_type":"stackbar","type":"value"}]},"datasetId":2}','2017-11-27 16:16:44.000','2017-11-27 16:16:44.000')
+;
