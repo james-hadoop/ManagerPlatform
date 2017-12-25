@@ -9,8 +9,13 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.cboard.controller.HsEventController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DataUtil {
+    private static final Logger logger = LoggerFactory.getLogger(DataUtil.class);
+
     private static String key = "key1key1key1key1";
     private static int qualifiedInterval = 10 * 1000;
 
@@ -86,7 +91,7 @@ public class DataUtil {
         return entity;
     }
 
-    public static boolean isQulifiedStaticResourceAccess(String urlParameter, int delayInterval) throws Exception {
+    public static boolean isQulifiedStaticResourceAccess(String urlParameter, long delayInterval) throws Exception {
         if (null == urlParameter || 0 == urlParameter.length()) {
             return false;
         }
@@ -95,6 +100,9 @@ public class DataUtil {
         // System.out.println(entity.getData() + " => " + entity.getTimestamp());
 
         long currentTimestamp = new Date().getTime();
+        logger.info("isQulifiedStaticResourceAccess(): currentTimestamp={}, requestTimestamp={}, delayInterval={}",
+                currentTimestamp, entity.getTimestamp(), delayInterval);
+
         if (delayInterval > currentTimestamp - entity.getTimestamp()) {
             return true;
         }
