@@ -43,7 +43,7 @@ public class StaticResourceFilter implements Filter {
         boolean isQulifiedStaticResourceAccess = false;
         try {
             String currentURL = request.getRequestURI();
-            if (currentURL.contains("static")) {
+            if (currentURL.endsWith("mp3")||currentURL.endsWith("mp4")) {
                 String queryString = request.getQueryString();
 
                 if (null == queryString || 0 == queryString.length()) {

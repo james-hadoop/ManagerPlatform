@@ -117,6 +117,8 @@ JamesBoard.controller('usersManagerCtrl', [ '$scope', 'Upload', '$timeout',
             $("#search_user").bind('click', function() {
                 var searchCondition=$("#search_user_condition").val();
                 
+                $("#search_user_condition").val("");
+                
                 if(''==searchCondition){
                     return;
                 }

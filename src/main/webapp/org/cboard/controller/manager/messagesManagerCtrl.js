@@ -159,6 +159,8 @@ JamesBoard.controller('messagesManagerCtrl', ['$scope', 'Upload', '$timeout', fu
     
     $("#search_message").bind('click', function() {
         var sMessageContentStr=$("#search_message_condition").val();
+        $("#search_message_condition").val("");
+        
         if(''==sMessageContentStr){
             return;
         }
