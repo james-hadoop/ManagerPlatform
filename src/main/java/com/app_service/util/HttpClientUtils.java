@@ -3,20 +3,26 @@ package com.app_service.util;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
@@ -54,11 +60,13 @@ public class HttpClientUtils {
             } finally {
                 long span = System.currentTimeMillis() - before;
                 if (ex != null) {
-                    logger.error("httpGet  -ERROR- [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
+                    logger.error("httpGet  -ERROR- [{}]url:{}",
+                            new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
                 } else if (span >= slow_threshold) {
                     logger.warn("httpGet  -SLOW-  [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url });
                 } else {
-                    logger.debug("httpGet  -OK-    [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url });
+                    logger.debug("httpGet  -OK-    [{}]url:{}",
+                            new Object[] { HumanReadableUtils.timeSpan(span), url });
                 }
                 if (null != httpGet) {
                     httpGet.abort();
@@ -92,11 +100,14 @@ public class HttpClientUtils {
             } finally {
                 long span = System.currentTimeMillis() - before;
                 if (ex != null) {
-                    logger.error("httpPost -ERROR- [{}]url:{},postContent:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, postContent, ex });
+                    logger.error("httpPost -ERROR- [{}]url:{},postContent:{}",
+                            new Object[] { HumanReadableUtils.timeSpan(span), url, postContent, ex });
                 } else if (span >= slow_threshold) {
-                    logger.warn("httpPost -SLOW-  [{}]url:{},postContent:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, postContent });
+                    logger.warn("httpPost -SLOW-  [{}]url:{},postContent:{}",
+                            new Object[] { HumanReadableUtils.timeSpan(span), url, postContent });
                 } else {
-                    logger.debug("httpPost -OK-  [{}]url:{},postContent:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, postContent });
+                    logger.debug("httpPost -OK-  [{}]url:{},postContent:{}",
+                            new Object[] { HumanReadableUtils.timeSpan(span), url, postContent });
                 }
                 if (null != httpPost) {
                     httpPost.abort();
@@ -132,7 +143,8 @@ public class HttpClientUtils {
         } finally {
             long span = System.currentTimeMillis() - before;
             if (ex != null) {
-                logger.error("httpHead -ERROR- [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
+                logger.error("httpHead -ERROR- [{}]url:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
             } else if (span >= slow_threshold) {
                 logger.warn("httpHead -SLOW-  [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url });
             } else {
@@ -172,7 +184,8 @@ public class HttpClientUtils {
         } finally {
             long span = System.currentTimeMillis() - before;
             if (ex != null) {
-                logger.error("httpGet  -ERROR- [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
+                logger.error("httpGet  -ERROR- [{}]url:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
             } else if (span >= slow_threshold) {
                 logger.warn("httpGet  -SLOW-  [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url });
             } else {
@@ -203,7 +216,8 @@ public class HttpClientUtils {
         } finally {
             long span = System.currentTimeMillis() - before;
             if (ex != null) {
-                logger.error("httpGet  -ERROR- [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
+                logger.error("httpGet  -ERROR- [{}]url:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
             } else if (span >= slow_threshold) {
                 logger.warn("httpGet  -SLOW-  [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url });
             } else {
@@ -282,7 +296,8 @@ public class HttpClientUtils {
         return httpGet(SimpleHttpClient.default_http_client, url, defaultCharset);
     }
 
-    public static String httpPost(HttpClient client, String url, String postContent, String defaultCharset, List<Header> headers) {
+    public static String httpPost(HttpClient client, String url, String postContent, String defaultCharset,
+            List<Header> headers) {
         HttpPost httpPost = null;
         String content = "";
         long before = System.currentTimeMillis();
@@ -307,11 +322,14 @@ public class HttpClientUtils {
         } finally {
             long span = System.currentTimeMillis() - before;
             if (ex != null) {
-                logger.error("httpPost -ERROR- [{}]url:{},postContent:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, postContent, ex });
+                logger.error("httpPost -ERROR- [{}]url:{},postContent:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, postContent, ex });
             } else if (span >= slow_threshold) {
-                logger.warn("httpPost -SLOW-  [{}]url:{},postContent:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, postContent });
+                logger.warn("httpPost -SLOW-  [{}]url:{},postContent:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, postContent });
             } else {
-                logger.debug("httpPost -OK-  [{}]url:{},postContent:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, postContent });
+                logger.debug("httpPost -OK-  [{}]url:{},postContent:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, postContent });
             }
             if (null != httpPost) {
                 httpPost.abort();
@@ -374,6 +392,47 @@ public class HttpClientUtils {
         return Integer.MIN_VALUE;
     }
 
+    public static String httpPost(String url, String defaultCharset, Map<String, String> paramMap) {
+        HttpClient httpClient = null;
+        HttpPost httpPost = null;
+        String content = null;
+        long before = System.currentTimeMillis();
+        Throwable ex = null;
+        try {
+            List<NameValuePair> list = new ArrayList<NameValuePair>();
+            Iterator<Entry<String, String>> iterator = paramMap.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Entry<String, String> elem = (Entry<String, String>) iterator.next();
+                list.add(new BasicNameValuePair(elem.getKey(), elem.getValue()));
+            }
+            if (list.size() > 0) {
+                UrlEncodedFormEntity entity = new UrlEncodedFormEntity(list, defaultCharset);
+                httpPost.setEntity(entity);
+            }
+            HttpResponse response = httpClient.execute(httpPost);
+            content = EntityUtils.toString(response.getEntity(), defaultCharset);
+            return content;
+        } catch (Throwable e) {
+            ex = e;
+        } finally {
+            long span = System.currentTimeMillis() - before;
+            if (ex != null) {
+                logger.error("httpPost -ERROR- [{}]url:{},postContent:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, paramMap, ex });
+            } else if (span >= slow_threshold) {
+                logger.warn("httpPost -SLOW-  [{}]url:{},postContent:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, paramMap });
+            } else {
+                logger.debug("httpPost -OK-  [{}]url:{},postContent:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, paramMap });
+            }
+            if (null != httpPost) {
+                httpPost.abort();
+            }
+        }
+        return null;
+    }
+
     public static String getLocationMethod(String url) {
         String location = url;
         int responseCode = 0;
@@ -400,7 +459,8 @@ public class HttpClientUtils {
         } finally {
             long span = System.currentTimeMillis() - before;
             if (ex != null) {
-                logger.error("httpGet  -ERROR- [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
+                logger.error("httpGet  -ERROR- [{}]url:{}",
+                        new Object[] { HumanReadableUtils.timeSpan(span), url, ex });
             } else if (span >= slow_threshold) {
                 logger.warn("httpGet  -SLOW-  [{}]url:{}", new Object[] { HumanReadableUtils.timeSpan(span), url });
             } else {

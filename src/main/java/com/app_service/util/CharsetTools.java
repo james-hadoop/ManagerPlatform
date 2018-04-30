@@ -5,9 +5,6 @@ import java.nio.charset.Charset;
 
 /**
  * 主要负责字符编码的转换
- * 
- * @author duxiaofu
- * @date 2016年1月14日
  */
 public final class CharsetTools {
 
