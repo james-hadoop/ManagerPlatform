@@ -8,7 +8,6 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class PlatformConfig {
     private static final Logger LOGGER = LoggerFactory.getLogger(PlatformConfig.class);
     private static final String CONFIG_FILE = "config.properties";
@@ -19,6 +18,8 @@ public class PlatformConfig {
     private String image;
     private String portrait;
     private Integer interval;
+
+    private String appServiceResourcePrefix;
 
     private static volatile PlatformConfig instance;
 
@@ -54,7 +55,9 @@ public class PlatformConfig {
         this.video = props.getProperty("static.path.video", "");
         this.image = props.getProperty("static.path.image", "");
         this.portrait = props.getProperty("static.path.portrait", "");
-        this.interval=Integer.parseInt(props.getProperty("static.path.interval",""));
+        this.interval = Integer.parseInt(props.getProperty("static.path.interval", ""));
+
+        this.appServiceResourcePrefix = props.getProperty("app.service.static.path.prefix", "");
     }
 
     public String getPrefix() {
@@ -103,5 +106,13 @@ public class PlatformConfig {
 
     public void setInterval(Integer interval) {
         this.interval = interval;
+    }
+
+    public String getAppServiceResourcePrefix() {
+        return appServiceResourcePrefix;
+    }
+
+    public void setAppServiceResourcePrefix(String appServiceResourcePrefix) {
+        this.appServiceResourcePrefix = appServiceResourcePrefix;
     }
 }
